@@ -1,3 +1,4 @@
+= javascript_include_tag 'kairans'
 %ol.breadcrumb
   %li= link_to 'メニュー', main_path
   %li= link_to '回覧', kairans_path
@@ -5,15 +6,38 @@
 
 = simple_form_for @kairan, url: kaitou_create_kairans_path  do |f|
   .col-md-3.col-md-offset-1
-    = f.input :発行者
-    = f.input :要件, label:'要件' do
-      = f.select :要件, Kairanyokenmst.all.map { |k| [k.名称, k.id, { class: '' }] }, {}, {include_blank: true, class: 'form-control'}
-    = f.input :開始, as: :date_time_picker
-    = f.input :終了, as: :date_time_picker
-    = f.input :件名
-    = f.input :内容, as: 'text'
+  %table.setsubiyoyaku-table.table.table-striped.table-bordered.table-hover{cellspacing: '0', width: '100%'}
+    %tr
+      %tr
+        %td= :発行者
+        %td
+          = f.input :発行者, label: false
+      %tr
+        %td= :要件
+        %td
+          = f.input :要件, label: false do
+            = f.select :要件, Kairanyokenmst.all.map { |k| [k.名称, k.id, { class: '' }] }, {}, {include_blank: true, class: 'form-control'}
+      %tr
+        %td= :開始
+        %td
+          = f.input :開始, as: :date_time_picker, label: false
+      %tr
+        %td= :終了
+        %td
+          = f.input :終了, as: :date_time_picker, label: false
+      %tr
+        %td= :件名
+        %td
+          = f.input :件名, label: false
+      %tr
+        %td= :内容
+        %td
+          = f.input :内容, as: 'text', label: false
 
-    = f.button :submit, '回答する', class: 'btn btn-primary', id: 'kairan'
+      %tr
+        %td= :内容
+        %td
+          = f.button :submit, '回答する', class: 'btn btn-primary', id: 'kairan', label: false
 
-    = hidden_field_tag 'kaitoid', @kaitoid
-    = hidden_field_tag 'kaitoto', @kaitoto
+      = hidden_field_tag 'kaitoid', @kaitoid, label: false
+      = hidden_field_tag 'kaitoto', @kaitoto, label: false
