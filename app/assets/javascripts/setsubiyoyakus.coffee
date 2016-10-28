@@ -6,15 +6,18 @@ jQuery ->
     "pagingType": "full_numbers",
     "oLanguage":{
       "sUrl": "../../assets/resource/dataTable_ja.txt"
-    },
-    "columnDefs": [
-      { "width": "15%", "targets": 0 },
-      { "width": "15%", "targets": 1 },
-      { "width": "20%", "targets": 2 },
-      { "width": "20%", "targets": 3 }
-      { "width": "30%", "targets": 4 }
+    }
+    "aoColumnDefs": [
+        { "bSortable": false, "aTargets": [ 5,6 ]},
+        {
+            "targets": [5,6],
+            "width": '7%'
+        }
     ],
-    order: [[ 0, 'des' ]]
+    "columnDefs": [ {
+        "targets"  : 'no-sort',
+        "orderable": false
+    }]
   })
 
   $('.datetime').datetimepicker({

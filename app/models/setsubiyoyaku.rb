@@ -21,19 +21,21 @@ class Setsubiyoyaku < ActiveRecord::Base
     @setsubiyoyaku = Setsubiyoyaku.where 設備コード: 設備コード
     @setsubiyoyaku.each do |setsubiyoyaku|
       # if is update the id it not nil then check some thing changed ?
-      if !self.id.nil?
-        # check 設備コード is changed? or 開始 changed ? or 終了 changed ?
-        # if there changed then check the 開始, 終了 are right ?
-        if 設備コード != old_setsubiyoyaku.設備コード || 開始 !=old_setsubiyoyaku.開始 || 終了 != old_setsubiyoyaku.終了
-          unless 開始 >= setsubiyoyaku.終了 || 終了<= setsubiyoyaku.開始
-            errors.add(:設備コード, "は注文されました。")
+      if self.id != setsubiyoyaku.id
+        if !self.id.nil?
+          # check 設備コード is changed? or 開始 changed ? or 終了 changed ?
+          # if there changed then check the 開始, 終了 are right ?
+          if 設備コード != old_setsubiyoyaku.設備コード || 開始 != old_setsubiyoyaku.開始 || 終了 != old_setsubiyoyaku.終了
+            unless 開始 >= setsubiyoyaku.終了 || 終了 <= setsubiyoyaku.開始
+              errors.add(:設備コード, "すでに他のスケジュールがあります。")
+            end
           end
-        end
-      else
-        # if is new the id is nil
-        # then check if there changed then check the 開始, 終了 are right ?
-        unless 開始 >= setsubiyoyaku.終了 || 終了<= setsubiyoyaku.開始
-          errors.add(:設備コード, "は注文されました。")
+        else
+          # if is new the id is nil
+          # then check if there changed then check the 開始, 終了 are right ?
+          unless 開始 >= setsubiyoyaku.終了 || 終了 <= setsubiyoyaku.開始
+            errors.add(:設備コード, "すでに他のスケジュールがあります。")
+          end
         end
       end
     end
