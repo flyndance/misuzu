@@ -12,7 +12,7 @@ class Shainmaster < ActiveRecord::Base
   has_one :kairan, dependent: :destroy, foreign_key: :発行者
   has_one :keihihead, dependent: :destroy, foreign_key: :社員番号
   has_many :kintais, dependent: :destroy, foreign_key: :社員番号
-  has_many :setsubiyoyaku, dependent: :destroy, foreign_key: :社員番号
+  has_many :setsubiyoyaku, dependent: :destroy, foreign_key: :予約者
 
   has_many :send_dengon, class_name: Dengon.name,
     foreign_key: :入力者, dependent: :destroy
