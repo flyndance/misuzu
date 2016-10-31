@@ -28,14 +28,17 @@
       - @kairanShoshais.each do |kairanshosai|
         %tr
           %td= kairanshosai.開始
-          %td= kairanshosai.kairan.氏名
+          %td= kairanshosai.kairan.try :氏名
           %td= kairanshosai.kairan.kairanyokenmst.try :名称 if kairanshosai.kairan
           %td= kairanshosai.件名
           %td.breakAll= kairanshosai.内容
           %td= kairanshosai.状態
           - kairanKaitou = Kairan.find kairanshosai.回覧コード
           - kaito = kairanshosai.kairan.確認要 == true ? '要':''
-          %td= link_to kaito, kaitou_kairan_path(kairanKaitou)
+          - if @shain_param == session[:user]
+            %td= link_to kaito, kaitou_kairan_path(kairanKaitou)
+          - else
+            %td= kaito
           %td
           %td= kairanshosai.id
           %td= kairanshosai.回覧コード
