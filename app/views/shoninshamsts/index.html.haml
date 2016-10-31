@@ -15,7 +15,7 @@
 
   %tbody
     - @shoninshamsts.each do |shoninshamst|
-      - if shoninshamst.shinseisha.氏名.nil? || shoninshamst.shouninsha.氏名.nil?
+      - if shoninshamst.shinseisha.nil? || shoninshamst.shouninsha.nil?
         shoninshamst.destroy
       - else
         %tr
