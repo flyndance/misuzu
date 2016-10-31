@@ -15,13 +15,17 @@
 
   %tbody
     - @shoninshamsts.each do |shoninshamst|
-      %tr
-        %td= shoninshamst.shinseisha.氏名
-        %td= shoninshamst.shouninsha.氏名
-        %td= shoninshamst.順番
-        %td= link_to '編集', edit_shoninshamst_path(shoninshamst)
-        - msg = t 'app.delete_confirm'
-        %td= link_to '削除', shoninshamst, :method => :delete, :data => { :confirm => msg }
+      - if shoninshamst.shinseisha.氏名.nil? || shoninshamst.shouninsha.氏名.nil?
+        shoninshamst.destroy
+      - else
+        %tr
+
+          %td= shoninshamst.shinseisha.氏名
+          %td= shoninshamst.shouninsha.氏名
+          %td= shoninshamst.順番
+          %td= link_to '編集', edit_shoninshamst_path(shoninshamst)
+          - msg = t 'app.delete_confirm'
+          %td= link_to '削除', shoninshamst, :method => :delete, :data => { :confirm => msg }
 
 = link_to '新規', new_shoninshamst_path
 %h4 CSVでのデータをインポート!
