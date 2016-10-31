@@ -2,9 +2,9 @@
   .col-md-2.col-md-offset-1
     = f.input :担当者コード
     = f.input :担当者名称
-    = f.label :password, "パスワード"
+    = f.label :password, "パスワード (4文字以上)"
     = f.password_field :password
-    = f.label :password_confirmation, "再パスワード"
+    = f.label :password_confirmation, "再パスワード (4文字以上)"
     = f.password_field :password_confirmation
     = f.label :avatar, "イメージ"
     = f.file_field :avatar
