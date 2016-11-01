@@ -23,7 +23,6 @@ class KairansController < ApplicationController
     Kairanshosai.create!(回覧コード:kairan.id, 対象者: taiShoSha, 状態: 0)
     kairanShoshai = Kairanshosai.where(回覧コード: params[:kaitoid], 対象者: session[:user]).first!
     kairanShoshai.update(状態: 2)
-    byebug
     redirect_to kairans_url
   rescue
   end
