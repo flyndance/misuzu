@@ -16,14 +16,8 @@
   %tbody
     - @shoninshamsts.each do |shoninshamst|
       %tr
-        - if !shoninshamst.shinseisha.nil?
-          %td= shoninshamst.shinseisha.氏名
-        - else
-          %td= 'error'
-        - if !shoninshamst.shouninsha.nil?
-          %td= shoninshamst.shouninsha.氏名
-        - else
-          %td= 'error'
+        %td= shoninshamst.shinseisha.氏名
+        %td= shoninshamst.shouninsha.氏名
         %td= shoninshamst.順番
         %td= link_to '編集', edit_shoninshamst_path(shoninshamst)
         - msg = t 'app.delete_confirm'
