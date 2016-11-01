@@ -20,6 +20,8 @@ class KairansController < ApplicationController
     Kairanshosai.create!(回覧コード:kairan.id, 対象者: taiShoSha, 状態: 0)
     kairanShoshai = Kairanshosai.where(回覧コード: params[:kaitoid], 対象者: session[:user]).first!
     kairanShoshai.update(状態: 2)
+    update_kairanshosai_counter taiShoSha
+    update_kairanshosai_counter session[:user]
     redirect_to kairans_url
   rescue
   end
@@ -41,6 +43,15 @@ class KairansController < ApplicationController
   def index
     case params[:button]
       when '検索'
+        strSelecteds = params[:checked]
+        arrSelecteds = strSelecteds.split(',') if strSelecteds
+        arrSelecteds.each do |kairanShoshaiId|
+          kairanshosai = Kairanshosai.find(kairanShoshaiId)
+          shain = Shainmaster.find kairanshosai.対象者
+          update_kairanshosai_counter shain
+        end
+        flash[:notice] = t "app.flash.kairan_confirm"
+      # redirect_to kairans_url
       when '確認'
         strSelecteds = params[:checked]
         arrSelecteds = strSelecteds.split(',') if strSelecteds
@@ -49,12 +60,14 @@ class KairansController < ApplicationController
           if kairanshosai.状態 == '未確認'
             kairanshosai.update 状態: 1
             # shain = Shainmaster.find kairanshosai.対象者
-            shain = Shainmaster.find session[:user]
-            kairankensu = shain.回覧件数.to_i - 1
-            kairankensu = '' if kairankensu == 0
-            shain.update 回覧件数: kairankensu
+            # shain = Shainmaster.find session[:user]
+            # kairankensu = shain.回覧件数.to_i - 1
+            # kairankensu = '' if kairankensu == 0
+            # shain.update 回覧件数: kairankensu
           end
         end
+        shain = Shainmaster.find session[:user]
+        update_kairanshosai_counter shain
         flash[:notice] = t "app.flash.kairan_confirm"
       # redirect_to kairans_url
 
