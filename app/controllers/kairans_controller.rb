@@ -14,6 +14,7 @@ class KairansController < ApplicationController
     @jushinsha= Shainmaster.find(kairan.発行者).氏名
     @hakkosha = Shainmaster.find(session[:user]).氏名
     @hakkoshaid = session[:user]
+    @yoken = Kairanyokenmst.find(kairan.要件).名称
   end
 
   def kaitou_create
