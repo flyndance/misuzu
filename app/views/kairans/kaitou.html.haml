@@ -1,19 +1,54 @@
+= javascript_include_tag 'kairans'
 %ol.breadcrumb
   %li= link_to 'メニュー', main_path
   %li= link_to '回覧', kairans_path
   %li.active 回答
 
+<div class="row">
+<div class="col-sm-5 col-md-offset-3">
 = simple_form_for @kairan, url: kaitou_create_kairans_path  do |f|
   .col-md-3.col-md-offset-1
-    = f.input :発行者
-    = f.input :要件, label:'要件' do
-      = f.select :要件, Kairanyokenmst.all.map { |k| [k.名称, k.id, { class: '' }] }, {}, {include_blank: true, class: 'form-control'}
-    = f.input :開始, as: :date_time_picker
-    = f.input :終了, as: :date_time_picker
-    = f.input :件名
-    = f.input :内容, as: 'text'
+  %table{cellspacing: '0', width: '100%'}
+    %tr
+      %td.kaitou-center-verical= :発行者
+      %td.kaitou-center-verical{colspan:'1'}
+        =@hakkosha
+      %td{colspan:'1'}
+    %tr
+      %td.kaitou-center-verical= :受信者
+      %td.kaitou-center-verical{colspan:'1'}
+        =@jushinsha
+      %td{colspan:'1'}
+    %tr
+      %td.kaitou-center-verical= :要件
+      %td.kaitou-center-verical{colspan:'1'}
+        = @kairan.要件
+      %td{colspan:'1'}
+        = f.input :要件,  label: false,:as => :hidden, :input_html => { :value => @kairan.要件 }
+    %tr
+      %td= :開始
+      %td.kaitou-center-verical
+        = f.input :開始, as: :date_time_picker, label: false
+    %tr
+      %td= :終了
+      %td.kaitou-center-verical
+        = f.input :終了, as: :date_time_picker, label: false
+    %tr
+      %td= :件名
+      %td.kaitou-center-verical
+        = f.input :件名, label: false
+    %tr
+      %td= :内容
+      %td.kaitou-center-verical{colspan:'2'}
+        = f.input :内容, as: 'text', label: false, :input_html => { :rows => 10 }
 
-    = f.button :submit, '回答する', class: 'btn btn-primary', id: 'kairan'
+    %tr
+      %td
+      %td
+        = f.button :submit, '回答する', class: 'btn btn-primary', id: 'kairan', label: false
 
-    = hidden_field_tag 'kaitoid', @kaitoid
-    = hidden_field_tag 'kaitoto', @kaitoto
+    = hidden_field_tag 'kaitoid', @kaitoid, label: false
+    = hidden_field_tag 'kaitoto', @kaitoto, label: false
+
+</div>
+</div>

@@ -11,6 +11,9 @@ class KairansController < ApplicationController
     @kairan = Kairan.new(発行者: session[:user], 要件: kairan.要件, 開始: kairan.開始, 終了:kairan.終了, 件名: 'Re:'<< kairan.件名, 内容: 'Re:' << kairan.内容)
     @kaitoid = params[:id]
     @kaitoto = kairan.発行者
+    @jushinsha= Shainmaster.find(kairan.発行者).氏名
+    @hakkosha = Shainmaster.find(session[:user]).氏名
+    @hakkoshaid = session[:user]
   end
 
   def kaitou_create
