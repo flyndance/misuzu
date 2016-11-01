@@ -36,9 +36,21 @@
           - kairanKaitou = Kairan.find kairanshosai.回覧コード
           - kaito = kairanshosai.kairan.確認要 == true ? '要':''
           - if @shain_param == session[:user]
-            %td= link_to kaito, kaitou_kairan_path(kairanKaitou)
+            - if kairanshosai.kairan.確認要 == true
+              - if kairanshosai.状態 != '回答済'
+                %td= link_to kaito, kaitou_kairan_path(kairanKaitou)
+              - else
+                %td= '回答済'
+            - else
+              %td= ''
           - else
-            %td= kaito
+            - if kairanshosai.kairan.確認要 == true
+              - if kairanshosai.状態 != '回答済'
+                %td= '要'
+              - else
+                %td= '回答済'
+            - else
+              %td= ''
           %td
           %td= kairanshosai.id
           %td= kairanshosai.回覧コード

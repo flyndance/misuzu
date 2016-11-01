@@ -46,12 +46,14 @@ class KairansController < ApplicationController
         arrSelecteds = strSelecteds.split(',') if strSelecteds
         arrSelecteds.each do |kairanShoshaiId|
           kairanshosai = Kairanshosai.find(kairanShoshaiId)
-          kairanshosai.update 状態: 1
-          # shain = Shainmaster.find kairanshosai.対象者
-          shain = Shainmaster.find session[:user]
-          kairankensu = shain.回覧件数.to_i - 1
-          kairankensu = '' if kairankensu == 0
-          shain.update 回覧件数: kairankensu
+          if kairanshosai.状態 == '未確認'
+            kairanshosai.update 状態: 1
+            # shain = Shainmaster.find kairanshosai.対象者
+            shain = Shainmaster.find session[:user]
+            kairankensu = shain.回覧件数.to_i - 1
+            kairankensu = '' if kairankensu == 0
+            shain.update 回覧件数: kairankensu
+          end
         end
         flash[:notice] = t "app.flash.kairan_confirm"
       # redirect_to kairans_url
