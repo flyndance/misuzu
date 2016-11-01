@@ -11,6 +11,9 @@ class KairansController < ApplicationController
     @kairan = Kairan.new(発行者: session[:user], 要件: kairan.要件, 開始: kairan.開始, 終了:kairan.終了, 件名: 'Re:'<< kairan.件名, 内容: 'Re:' << kairan.内容)
     @kaitoid = params[:id]
     @kaitoto = kairan.発行者
+    @jushinsha= Shainmaster.find(kairan.発行者).氏名
+    @hakkosha = Shainmaster.find(session[:user]).氏名
+    @hakkoshaid = session[:user]
   end
 
   def kaitou_create
@@ -20,6 +23,7 @@ class KairansController < ApplicationController
     Kairanshosai.create!(回覧コード:kairan.id, 対象者: taiShoSha, 状態: 0)
     kairanShoshai = Kairanshosai.where(回覧コード: params[:kaitoid], 対象者: session[:user]).first!
     kairanShoshai.update(状態: 2)
+    byebug
     redirect_to kairans_url
   rescue
   end
