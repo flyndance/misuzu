@@ -43,15 +43,6 @@ class KairansController < ApplicationController
   def index
     case params[:button]
       when '検索'
-        strSelecteds = params[:checked]
-        arrSelecteds = strSelecteds.split(',') if strSelecteds
-        arrSelecteds.each do |kairanShoshaiId|
-          kairanshosai = Kairanshosai.find(kairanShoshaiId)
-          shain = Shainmaster.find kairanshosai.対象者
-          update_kairanshosai_counter shain
-        end
-        flash[:notice] = t "app.flash.kairan_confirm"
-      # redirect_to kairans_url
       when '確認'
         strSelecteds = params[:checked]
         arrSelecteds = strSelecteds.split(',') if strSelecteds
