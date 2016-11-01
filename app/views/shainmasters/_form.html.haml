@@ -1,5 +1,6 @@
 = simple_form_for @shainmaster do |f|
   .col-sm-4.col-sm-offset-3
+    = f.input :序列
     = f.input :社員番号 if mode == :new
     = f.input :連携用社員番号
     = f.input :氏名

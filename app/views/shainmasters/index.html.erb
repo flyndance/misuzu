@@ -13,6 +13,7 @@
 
   <thead>
     <tr>
+      <th>序列</th>
       <th>社員番号</th>
       <th>連携用社員番号</th>
       <th>氏名</th>
@@ -29,6 +30,7 @@
   <tbody>
   <% @shainmasters.each do |shain| %>
     <tr id="shainmaster_<%= shain.id %>">
+      <td><%= shain.序列 %></td>
       <td><%= shain.社員番号 %></td>
       <td><%= shain.連携用社員番号 %></td>
       <td><%= shain.氏名 %></td>

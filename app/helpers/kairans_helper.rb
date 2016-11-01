@@ -7,12 +7,15 @@ module KairansHelper
       Kairanshosai.create(回覧コード: kairan_id, 対象者: shainNo, 状態: 0)
       # Update kairan on timeline view
       shainToUpdate = Shainmaster.find shainNo
-      shainCurrentKairanCount = shainToUpdate.nil? ? 0:shainToUpdate.回覧件数.to_i
-      shainCurrentKairanCount += 1
-      shainToUpdate.update(回覧件数: shainCurrentKairanCount)
+      counter = Kairanshosai.where(対象者: shainNo, 状態: 0).count
+      Shainmaster.find(shainNo).update(回覧件数: counter)
     end
   end
 
+  def update_kairanshosai_counter(shain)
+    counter = Kairanshosai.where(対象者: shain, 状態: 0).count
+    Shainmaster.find(shain).update(回覧件数: counter)
+  end
   # delete all old kairan before 1 month
   def old_kairan_process
     kairans = Kairan.where('created_at < :end_date', end_date: 30.days.ago)

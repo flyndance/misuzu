@@ -5,7 +5,7 @@ class Kairan < ActiveRecord::Base
   belongs_to :shainmaster, foreign_key: :発行者
 
   # has_many :kairanshosais, dependent: :destroy
-  has_many :kairanshosais, foreign_key: :回覧コード
+  has_many :kairanshosais, dependent: :destroy, foreign_key: :回覧コード
 
   # delegate :要件名, to: :kairanyokenmst, prefix: :job, allow_nil: true
   delegate :名称, to: :kairanyokenmst, allow_nil: true

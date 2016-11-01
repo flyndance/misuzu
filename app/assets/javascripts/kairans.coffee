@@ -94,7 +94,6 @@ jQuery ->
       style:    'multi',
 #      selector: 'td:first-child'
     },
-    order: [[ 1, 'asc' ]],
     dom: 'Bfrtip',
     buttons: [
 #      'selected',
