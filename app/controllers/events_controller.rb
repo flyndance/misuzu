@@ -59,7 +59,7 @@ class EventsController < ApplicationController
     end
     # @all_events = Event.where("Date(開始) = ?", Date.today.to_s(:db))
     @all_events = Event.all
-    @shains = Shainmaster.where(タイムライン区分: false).order(:所属コード, :役職コード, :社員番号).all
+    @shains = Shainmaster.where(タイムライン区分: false).reorder(:所属コード, :役職コード, :序列, :社員番号).all
   rescue
     @events = Shainmaster.take.events
   end
