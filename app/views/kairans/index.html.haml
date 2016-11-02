@@ -32,7 +32,10 @@
           %td= kairanshosai.kairan.kairanyokenmst.try :名称 if kairanshosai.kairan
           %td= kairanshosai.件名
           %td.breakAll= kairanshosai.内容
-          %td= kairanshosai.状態
+          - if kairanshosai.状態 == '未確認'
+            %td= '未確認'
+          - else
+            %td= '確認済'
           - kairanKaitou = Kairan.find kairanshosai.回覧コード
           - kaito = kairanshosai.kairan.確認要 == true ? '要':''
           - if @shain_param == session[:user]
