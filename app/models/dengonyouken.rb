@@ -13,7 +13,7 @@ class Dengonyouken < ActiveRecord::Base
   end
 
   def self.to_csv
-    attributes = %w{id 種類名 備考}
+    attributes = %w{id 種類名 備考 color}
 
     CSV.generate(headers: true) do |csv|
       csv << attributes
