@@ -31,10 +31,10 @@ class User < ActiveRecord::Base
   def check_taken
     if 担当者コード.present? && 担当者コード.in?(User.pluck(:担当者コード))
       errors.add(:担当者コード, 'はすでに存在します。')
-    end
-
-    if !担当者コード.in?(Shainmaster.pluck(:連携用社員番号))
+    elsif 担当者コード.present? && !担当者コード.in?(Shainmaster.pluck(:連携用社員番号))
       errors.add(:担当者コード, 'は不正な値です。')
+    elsif !担当者コード.present?
+      errors.add(:担当者コード, '')
     end
   end
 
