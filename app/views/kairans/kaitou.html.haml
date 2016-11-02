@@ -10,35 +10,42 @@
   .col-md-3.col-md-offset-1
   %table{cellspacing: '0', width: '100%'}
     %tr
-      %td.kaitou-center-verical= :発行者
+      %td.kaitou-center-verical
+        %b 発行者 
       %td.kaitou-center-verical{colspan:'1'}
         =@hakkosha
       %td{colspan:'1'}
     %tr
-      %td.kaitou-center-verical= :受信者
+      %td.kaitou-center-verical 
+        %b 受信者
       %td.kaitou-center-verical{colspan:'1'}
         =@jushinsha
       %td{colspan:'1'}
     %tr
-      %td.kaitou-center-verical= :要件
+      %td.kaitou-center-verical 
+        %b 要件
       %td.kaitou-center-verical{colspan:'1'}
         = @yoken
       %td{colspan:'1'}
         = f.input :要件,  label: false,:as => :hidden, :input_html => { :value => @kairan.要件 }
     %tr
-      %td= :開始
+      %td 
+        %b 開始
       %td.kaitou-center-verical
         = f.input :開始, as: :date_time_picker, label: false
     %tr
-      %td= :終了
+      %td 
+        %b 終了
       %td.kaitou-center-verical
         = f.input :終了, as: :date_time_picker, label: false
     %tr
-      %td= :件名
+      %td 
+        %b 件名
       %td.kaitou-center-verical
         = f.input :件名, label: false
     %tr
-      %td= :内容
+      %td 
+        %b 内容
       %td.kaitou-center-verical{colspan:'2'}
         = f.input :内容, as: 'text', label: false, :input_html => { :rows => 10 }
 
