@@ -1,6 +1,8 @@
 class Kairanyokenmst < ActiveRecord::Base
   self.table_name = :回覧用件マスタ
 
+  belongs_to :yuusen
+
   validates :名称, presence: true
   def self.import(file)
     # a block that runs through a loop in our CSV data
