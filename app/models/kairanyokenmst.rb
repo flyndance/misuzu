@@ -11,7 +11,7 @@ class Kairanyokenmst < ActiveRecord::Base
   end
 
   def self.to_csv
-    attributes = %w{id 名称 備考 color}
+    attributes = %w{id 名称 備考}
 
     CSV.generate(headers: true) do |csv|
       csv << attributes
