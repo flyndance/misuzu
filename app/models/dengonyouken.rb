@@ -1,6 +1,8 @@
 class Dengonyouken < ActiveRecord::Base
   self.table_name = :伝言用件マスタ
 
+  belongs_to :yuusen
+
   validates :種類名, presence: true
 
   # a class method import, with file passed through as an argument

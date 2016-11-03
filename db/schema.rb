@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161102054832) do
+ActiveRecord::Schema.define(version: 20161103042638) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -189,6 +189,18 @@ ActiveRecord::Schema.define(version: 20161102054832) do
     t.string   "備考"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+<<<<<<< HEAD
+    t.integer  "優先さ"
+  end
+
+  create_table "優先", force: :cascade do |t|
+    t.integer  "優先さ"
+    t.string   "名前"
+    t.string   "色"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+=======
+>>>>>>> 23988f24d8f29d3c6300b277b0797b3301fdb113
   end
 
   create_table "分類マスタ", id: false, force: :cascade do |t|
@@ -219,6 +231,10 @@ ActiveRecord::Schema.define(version: 20161102054832) do
     t.string   "備考"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+<<<<<<< HEAD
+    t.integer  "優先さ"
+=======
+>>>>>>> 23988f24d8f29d3c6300b277b0797b3301fdb113
   end
 
   create_table "回覧詳細", force: :cascade do |t|
