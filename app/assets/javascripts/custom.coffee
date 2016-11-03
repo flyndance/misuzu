@@ -1,8 +1,8 @@
 jQuery ->
-  $("form").on("keypress",  (e) ->
-    if (e.keyCode == 13)
-      false
-  )
+#  $("form").on("keypress",  (e) ->
+#    if (e.keyCode == 13)
+#      false
+#  )
 
 #  $('.glyphicon-calendar').datetimepicker({
 #    format: 'YYYY/MM/DD',

@@ -30,6 +30,15 @@
   </div>
 
 <% end %>
+ 
+ <script>//lock enter keypress at login
+$("form").bind("keypress", function (e) {
+    if (e.keyCode == 13) {
+        return false;
+    }
+});
+
+</script>
    
   </div>
 </div>

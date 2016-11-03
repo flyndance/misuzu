@@ -483,17 +483,22 @@ $(function(){
             $(this).addClass('selected');
             $(this).addClass('success');
         }
-
     } );
-
+    var s = document.getElementById('event_状態コード').value;
+    if (s != '11'){
+        $('.event_有無').hide();
+    }
     //状態選択された行を判断
     $('#joutai_table tbody').on( 'click', 'tr', function () {
 
         var d = oJoutaiTable.row(this).data();
         $('#event_状態コード').val(d[0]);
         //$('#joutai_name').text(d[1]);
-        $('.hint-joutai-refer').text(d[1])
-
+        $('.hint-joutai-refer').text(d[1]);
+        if( d[1] == '外出')
+            $('.event_有無').show();
+        else
+            $('.event_有無').hide();
         //#    remove error if has
         $('#event_状態コード').closest('.form-group').find('span.help-block').remove()
         $('#event_状態コード').closest('.form-group').removeClass('has-error')
