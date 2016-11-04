@@ -21,14 +21,18 @@ json.events @all_events do |event|
       umu_flag = '　►'
     when '連続'
       umu_flag = '　▼'
-  end  
+  end
   comment = ''
   comment = event.try(:comment)
   title =''
   title = event.joutaimaster.try(:name) if event.joutaimaster
   # title = event.joutaimaster.try(:name) << kisha_flag if event.joutaimaster
   # title = event.jobmaster.try(:job_name) << kisha_flag if event.joutaimaster
-  json.title title + ": " +comment+umu_flag
+  if title == '外出'
+    json.title title + ": " +comment+umu_flag
+  else
+    json.title title + ": " +comment
+  end
   # start_time = event.try(:joutai_code) == '30' ? event.try(:start_time).to_date : event.try(:start_time)
   # end_time = event.try(:joutai_code) == '30' ? event.try(:end_time).to_date : event.try(:end_time)
 

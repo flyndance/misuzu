@@ -228,7 +228,7 @@ private
 # Never trust parameters from the scary internet, only allow the white list through.
   def event_params
     params.require(:event).permit(:社員番号, :開始, :終了, :状態コード, :場所コード, :JOB, :所属コード, :工程コード, :工数,
-                                  :計上, :所在コード, :comment, :帰社区分, :有無 )
+                                  :計上, :所在コード, :comment, :有無, :帰社区分)
   end
 
   def basho_params
