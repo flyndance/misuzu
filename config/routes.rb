@@ -1,4 +1,8 @@
 Jpt::Application.routes.draw do
+  resources :yuusens do
+    collection {get :export_csv}
+    collection {post :import}
+  end
   resources :setsubis do
     collection {post :import}
     collection {get :export_csv}
