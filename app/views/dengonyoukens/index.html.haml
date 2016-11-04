@@ -9,6 +9,7 @@
     %tr
       %th 種類名
       %th 備考
+      %th 優先さ
       %th
       %th
 
@@ -17,6 +18,7 @@
       %tr
         %td= dengonyouken.種類名
         %td= dengonyouken.備考
+        %td= dengonyouken.優先さ
         %td= link_to '編集', edit_dengonyouken_path(dengonyouken)
         %td= link_to '削除', dengonyouken, :method => :delete, :data => { :confirm => '削除で宜しいですか。' }
 
