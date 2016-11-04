@@ -1,7 +1,7 @@
 = simple_form_for(@yuusen) do |f|
   .col-sm-3.col-sm-offset-3
     .form-inputs
-      = f.input :優先さ
+      = f.input :優先さ if mode == :new
       = f.input :名前
       = f.input :色
 
