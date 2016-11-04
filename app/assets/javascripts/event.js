@@ -783,3 +783,12 @@ $(function(){
     //$('#calendar-timeline').show();
     //$('.timeline-view').show();
 });
+
+$(function(){
+    var s = $("#event_状態コード").val();
+    if (s != '11'){
+        $('.event_有無').hide();
+    }
+});
+
+
