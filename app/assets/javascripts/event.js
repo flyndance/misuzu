@@ -484,10 +484,10 @@ $(function(){
             $(this).addClass('success');
         }
     } );
-    var s = document.getElementById('event_状態コード').value;
-    if (s != '11'){
-        $('.event_有無').hide();
-    }
+    // var s = document.getElementById('event_状態コード').value;
+    // if (s != '11'){
+    //     $('.event_有無').hide();
+    // }
     //状態選択された行を判断
     $('#joutai_table tbody').on( 'click', 'tr', function () {
 
