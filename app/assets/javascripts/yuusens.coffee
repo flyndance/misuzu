@@ -2,7 +2,7 @@
 # All this logic will automatically be available in application.js.
 # You can use CoffeeScript in this file: http://coffeescript.org/
 jQuery ->
-  $('.kairanyouken-table').DataTable({
+  $('.yuusen-table').DataTable({
     "pagingType": "simple_numbers"
     ,"oLanguage":{
       "sUrl": "../../assets/resource/dataTable_ja.txt"

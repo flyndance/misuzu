@@ -76,6 +76,6 @@ class KairanyokenmstsController < ApplicationController
     end
 
     def kairanyokenmst_params
-      params.require(:kairanyokenmst).permit(:名称, :備考)
+      params.require(:kairanyokenmst).permit(:名称, :備考, :優先さ)
     end
 end
