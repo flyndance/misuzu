@@ -4,6 +4,11 @@ module DengonsHelper
     Shainmaster.find(dengon_params[:社員番号]).update(伝言件数: counter)
   end
 
+  def update_dengon_counter_with_id shainbango
+    counter = Dengon.where(社員番号: shainbango, 確認: false).count
+    Shainmaster.find(shainbango).update(伝言件数: counter)
+  end
+
   def send_mail(to_mail, subject_mail, body_mail)
     Mail.deliver do
       to to_mail
