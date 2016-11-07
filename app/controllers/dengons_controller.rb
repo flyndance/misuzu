@@ -66,7 +66,9 @@ class DengonsController < ApplicationController
   end
 
   def destroy
-    @dengon.destroy
+    shainbango = Dengon.find(params[:id]).社員番号
+    @dengon.destroy()
+    update_dengon_counter_with_id shainbango
     respond_with(@dengon)
   end
 
