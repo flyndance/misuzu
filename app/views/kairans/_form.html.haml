@@ -4,7 +4,7 @@
     .row
       .col-md-6
         = f.input :要件, label:'要件', input_html: {style: 'width:100px'} do
-          = f.select :要件, Kairanyokenmst.all.map { |k| [k.名称, k.id, { class: '' }] }, {}, {include_blank: true, class: 'form-control'}
+          = f.select :要件, Kairanyokenmst.all.map { |k| [k.名称, k.id, {:style => "background-color: "+k.yuusen.try(:色).to_s+"; color: Black"}] }, {}, {include_blank: true, class: 'form-control'}
         = f.input :開始,as: :date_time_picker,input_html: { class: 'kairan-input-width' }
         = f.input :終了, as: :date_time_picker
     = f.input :件名
