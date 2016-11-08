@@ -18,7 +18,7 @@ $(function() {
             "targets"  : 'no-sort',
             "orderable": false
         }]
-    });
+    })
 
 
 });
@@ -41,6 +41,6 @@ $(function(){
 //binding preview when load
     $("#preview-text").css('color', $("#joutaimaster_text_color").val());
     $('#preview-backgroud').css("background-color", $("#joutaimaster_色").val());
-    
+
 });
 
