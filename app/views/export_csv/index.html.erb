@@ -172,5 +172,11 @@
         export_csv_setsubis_path(format: :csv) %>
       </td>
     </tr>
+    <tr>
+      <td><%= @index+=1 %></td>
+      <td><%= link_to "優先",
+        export_csv_yuusens_path(format: :csv) %>
+      </td>
+    </tr>
   </tbody>
 </table>
