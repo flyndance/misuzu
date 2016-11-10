@@ -16,11 +16,11 @@ json.events @all_events do |event|
   umu_flag = ''
   case event.try(:有無)
     when '帰社'
-      umu_flag = '　◄'
+      umu_flag = ' <span style="font-size: 15px;" class="glyphicon glyphicon-triangle-left"></span>'
     when '直帰'
-      umu_flag = '　►'
+      umu_flag = ' <span style="font-size: 15px;" class="glyphicon glyphicon-triangle-bottom"></span>'
     when '連続'
-      umu_flag = '　▼'
+      umu_flag = ' <span style="font-size: 15px;" class="glyphicon glyphicon-triangle-top"></span>'
   end
   comment = ''
   comment = event.try(:comment)
@@ -28,7 +28,7 @@ json.events @all_events do |event|
   title = event.joutaimaster.try(:name) if event.joutaimaster
   # title = event.joutaimaster.try(:name) << kisha_flag if event.joutaimaster
   # title = event.jobmaster.try(:job_name) << kisha_flag if event.joutaimaster
-  if title == '外出'
+  if title == '外出' || title == '直行' || title == '出張' || title == '出張移動'
     json.title title + ": " +comment+umu_flag
   else
     json.title title + ": " +comment
