@@ -31,8 +31,8 @@ $(function(){
                 eventOverlap: false,
                 defaultView: 'timelineDay',
                 events: data.events,
-                eventRender: function(event, element) {                                          
-                  element.find('span.fc-title').html(data.events.title).html(element.find('span.fc-title').text());                    
+                eventRender: function(event, element) {
+                  element.find('span.fc-title').html(data.events.title).html(element.find('span.fc-title').text());
                 },
                 //events: '/events.json',
                 //header: {
