@@ -495,7 +495,7 @@ $(function(){
         $('#event_状態コード').val(d[0]);
         //$('#joutai_name').text(d[1]);
         $('.hint-joutai-refer').text(d[1]);
-        if( d[1] == '外出')
+        if( d[1] == '外出' || d[1] == '直行' || d[1] == '出張' || d[1] == '出張移動')
             $('.event_有無').show();
         else
             $('.event_有無').hide();
@@ -786,9 +786,8 @@ $(function(){
 
 $(function(){
     var s = $("#event_状態コード").val();
-    if (s != '11'){
-        $('.event_有無').hide();
+    $('.event_有無').hide();
+    if (s == '10' || s == '11' || s == '12' || s == '13'){
+        $('.event_有無').show();
     }
 });
-
-
