@@ -5,8 +5,8 @@
       .col-md-4
         = f.input :状態コード, label: '状態', input_html: {style: 'width:50px'}, as: :search_field, hint:"#{@event.joutaimaster.try :状態名}", hint_html: {class: 'hint-joutai-refer'}
       .col-md-3
-        = f.input :有無 do
-          = f.select :有無, options_for_select(["帰社", "直帰", "連続"], :selected => @event.有無), {include_blank: true}, {class: 'form-control', style: 'width:100px'}
+        = f.input :有無 , label: '帰社'do
+          = f.select :有無, options_for_select(["帰社", "直帰", "連続"], :selected => @event.有無), {include_blank: true , class: 'form-control', style: 'width:100px'}
     = f.input :場所コード, label: '場所', input_html: {style: 'width:100px'}, as: :search_fields, hint:"#{@event.bashomaster.try :場所名}", hint_html: {class: 'hint-basho-refer'}
     = f.input :JOB, input_html: {style: 'width:100px'}, as: :search_field, hint:"#{@event.jobmaster.try :job名}", hint_html: {class: 'hint-job-refer'}
     -#= f.input :工程コード, label: '工程', input_html: {style: 'width:100px'}, as: :search_field, hint:"#{@event.kouteimaster.try :工程名}", hint_html: {class: 'hint-koutei-refer'}
