@@ -52,6 +52,9 @@ $(function(){
                     center: 'month,agendaWeek,agendaDay prevYear,nextYear',
                     right:  'today prev,next'
                 },
+                dayClick: function(date, jsEvent, view) {
+                    window.open('http://localhost:3000/events/new?start_at='+date.format());
+                },
                 //eventRender: function(event, element, view) {
                 //    element.qtip({
                 //        content: event.description
@@ -290,6 +293,9 @@ $(function(){
         $('#select_user_modal').modal('show');
     });
 
+    // $("#calendar-month-view").dblclick(function() {
+    //     window.open('http://localhost:3000/events/new?locale=ja');
+    // });
     //$('#joutai_search').click(function(){
     //    $('#joutai_search_modal').modal('show');
     //});
