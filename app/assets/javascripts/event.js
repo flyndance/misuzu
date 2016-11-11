@@ -53,7 +53,9 @@ $(function(){
                     right:  'today prev,next'
                 },
                 dayClick: function(date, jsEvent, view) {
-                    window.open('http://misuzu.herokuapp.com/events/new?start_at='+date.format());
+                   //window.open('http://misuzu.herokuapp.com/events/new?start_at='+date.format());
+                   window.open('/events/new?start_at='+date.format());
+                    //alert(data.sUrl);
                 },
                 //eventRender: function(event, element, view) {
                 //    element.qtip({
