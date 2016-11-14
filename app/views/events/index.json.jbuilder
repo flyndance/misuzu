@@ -34,9 +34,16 @@ json.my_events @events do |my_event|
   description = ''
   # description = my_event.jobmaster.try(:job名) if my_event.jobmaster
   description = my_event.joutaimaster.try(:name) if my_event.joutaimaster
-  json.description description 
+  json.description description
   # json.title event.bashomaster.try :場所名
-  json.title my_event.joutaimaster.try(:name) if my_event.joutaimaster
+  # json.title my_event.joutaimaster.try(:name)+"aaa" if my_event.joutaimaster
+  # comment = ''
+  comment = my_event.try(:comment)
+  job = my_event.jobmaster.try(:job名) if my_event.jobmaster
+  json.comment comment
+  title = my_event.joutaimaster.try(:name) if my_event.joutaimaster
+  json.job job
+  json.title title
   json.start my_event.try(:start_time)
   json.end my_event.try(:end_time)
   json.url edit_event_url(my_event, format: :html)
@@ -55,7 +62,7 @@ json.shains @shains do |shain|
   joutai = shain.shozai_所在名
   # joutai = event.joutai_状態名 if event
   json.joutai joutai
-  
+
   # json.joutai shain.events.where("開始 < ? AND 終了 > ?", Time.now, Time.now).first.joutaimaster.try(:状態名) if shain.events.where("開始 < ? AND 終了 > ?",Time.now, Time.now).first
   json.shozoku shain.shozokumaster.try(:所属名) if shain.shozokumaster
   json.linenum shain.try :内線電話番号
@@ -65,11 +72,11 @@ json.shains @shains do |shain|
   background_color = ''
   background_color = shain.shozai.try :background_color if shain.shozai
   json.background_color background_color
-  
+
   text_color = ''
   text_color = shain.shozai.try :text_color if shain.shozai
   json.text_color text_color
-  
+
   # json.eventColor shain.events.first.joutaimaster.色 if shain.events.first
 end
 
