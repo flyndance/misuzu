@@ -117,11 +117,11 @@ $(document).ready(function() {
             }
         );
         var nowDate = new Date();
-        var date = nowDate.getFullYear()+"年"+nowDate.getMonth()+"月"+nowDate.getDate()+"日";
+        var date = nowDate.getFullYear()+"年"+(nowDate.getMonth()+1)+"月"+nowDate.getDate()+"日";
         $("#calendar-timeline .fc-left").replaceWith('<div class= "fc-left"><h2>'+date+'(今日)</h2></div>');
         calendar.find('.fc-today-button').click(function(){
             var currentDate = new Date();
-            var date = currentDate.getFullYear()+"年"+currentDate.getMonth()+"月"+currentDate.getDate()+"日";
+            var date = currentDate.getFullYear()+"年"+(currentDate.getMonth()+1)+"月"+currentDate.getDate()+"日";
             $("#calendar-timeline .fc-left").replaceWith('<div class= "fc-left"><h2>'+date+'(今日)</h2></div>');
         });
 
@@ -157,7 +157,7 @@ $(document).on("click", ".fc-next-button", function(){
 
     var currentDate = new Date();
 
-    var date = calDate.getFullYear()+"年"+calDate.getMonth()+"月"+calDate.getDate()+"日";
+    var date = calDate.getFullYear()+"年"+(calDate.getMonth()+1)+"月"+calDate.getDate()+"日";
     if(calDate.getDate()==currentDate.getDate()&&calDate.getMonth()==currentDate.getMonth()&&calDate.getFullYear()==currentDate.getFullYear()){
         $("#calendar-timeline .fc-left").replaceWith('<div class= "fc-left"><h2>'+date+'(今日)</h2></div>');
     }else if(calDate > currentDate ){
@@ -175,7 +175,7 @@ $(document).on("click", ".fc-prev-button", function(){
 
     var currentDate = new Date();
 
-    var date = calDate.getFullYear()+"年"+calDate.getMonth()+"月"+calDate.getDate()+"日";
+    var date = calDate.getFullYear()+"年"+(calDate.getMonth()+1)+"月"+calDate.getDate()+"日";
     if(calDate.getDate()==currentDate.getDate()&&calDate.getMonth()==currentDate.getMonth()&&calDate.getFullYear()==currentDate.getFullYear()){
         $("#calendar-timeline .fc-left").replaceWith('<div class= "fc-left"><h2>'+date+'(今日)</h2></div>');
     }else if(calDate > currentDate ){
