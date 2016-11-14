@@ -8,7 +8,7 @@ $(function(){
     var scroll = -1,
         viewNames = ['agendaWeek', 'agendaDay', 'timelineDay'];
     $.getJSON('/events', function(data) {
-        $('#calendar-month-view').fullCalendar(
+        var calendar = $('#calendar-month-view').fullCalendar(
             {
                 schedulerLicenseKey: 'CC-Attribution-NonCommercial-NoDerivatives',
                 //height: 1287,
@@ -62,6 +62,12 @@ $(function(){
                 //        content: event.description
                 //    });
                 //},
+                eventRender: function(event, element, view) {
+                    if (view.name === "agendaDay" || view.name === "agendaWeek") {
+                        element.find(".fc-title")
+                            .replaceWith('<div>'+event.job+'</div>'+'<div>'+event.comment+'</div>');
+                    }
+                }
             }
         );
 
