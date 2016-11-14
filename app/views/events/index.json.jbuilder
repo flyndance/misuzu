@@ -38,7 +38,9 @@ json.my_events @events do |my_event|
   # json.title event.bashomaster.try :場所名
   # json.title my_event.joutaimaster.try(:name)+"aaa" if my_event.joutaimaster
   # comment = ''
+  comment = ''
   comment = my_event.try(:comment)
+  job = ''
   job = my_event.jobmaster.try(:job名) if my_event.jobmaster
   json.comment comment
   title = my_event.joutaimaster.try(:name) if my_event.joutaimaster
