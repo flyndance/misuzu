@@ -123,9 +123,16 @@ $(document).ready(function() {
             var currentDate = new Date();
             var date = currentDate.getFullYear()+"年"+(currentDate.getMonth()+1)+"月"+currentDate.getDate()+"日";
             $("#calendar-timeline .fc-left").replaceWith('<div class= "fc-left"><h2>'+date+'(今日)</h2></div>');
+            $('col:nth-child(3)').css('width',25);
+            $('col:nth-child(4)').css('width',25);
+            $('col:nth-child(5)').css('width',25);
+            $('col:nth-child(6)').css('width',25);
+            $('#calendar-timeline .fc-resource-area').css('width',"35%");
+
         });
 
 
+        //$("#calendar-timeline").fullCalendar( 'getResourceById', 'kairan' ).hide();
 
 
     });
@@ -160,8 +167,23 @@ $(document).on("click", ".fc-next-button", function(){
     var date = calDate.getFullYear()+"年"+(calDate.getMonth()+1)+"月"+calDate.getDate()+"日";
     if(calDate.getDate()==currentDate.getDate()&&calDate.getMonth()==currentDate.getMonth()&&calDate.getFullYear()==currentDate.getFullYear()){
         $("#calendar-timeline .fc-left").replaceWith('<div class= "fc-left"><h2>'+date+'(今日)</h2></div>');
+        $('col:nth-child(3)').css('width',25);
+        $('col:nth-child(4)').css('width',25);
+        $('col:nth-child(5)').css('width',25);
+        $('col:nth-child(6)').css('width',25);
+        $('#calendar-timeline .fc-resource-area').css('width',"35%");
     }else if(calDate > currentDate ){
         $("#calendar-timeline .fc-left").replaceWith('<div class= "fc-left"><h2>'+date+'(予定)</h2></div>');
+        // $('col:nth-child(3),th:nth-child(3)').hide();
+        // $('col:nth-child(4),th:nth-child(4)').hide();
+        // $('col:nth-child(5),th:nth-child(5)').hide();
+        // $('col:nth-child(6),th:nth-child(6)').hide();
+        $('col:nth-child(3)').css('width',0);
+        $('col:nth-child(4)').css('width',0);
+        $('col:nth-child(5)').css('width',0);
+        $('col:nth-child(6)').css('width',0);
+
+        $('#calendar-timeline .fc-resource-area').css('width',"20%");
     }
 
 
@@ -178,9 +200,18 @@ $(document).on("click", ".fc-prev-button", function(){
     var date = calDate.getFullYear()+"年"+(calDate.getMonth()+1)+"月"+calDate.getDate()+"日";
     if(calDate.getDate()==currentDate.getDate()&&calDate.getMonth()==currentDate.getMonth()&&calDate.getFullYear()==currentDate.getFullYear()){
         $("#calendar-timeline .fc-left").replaceWith('<div class= "fc-left"><h2>'+date+'(今日)</h2></div>');
+        $('col:nth-child(3)').css('width',25);
+        $('col:nth-child(4)').css('width',25);
+        $('col:nth-child(5)').css('width',25);
+        $('col:nth-child(6)').css('width',25);
+        $('#calendar-timeline .fc-resource-area').css('width',"35%");
     }else if(calDate > currentDate ){
         $("#calendar-timeline .fc-left").replaceWith('<div class= "fc-left"><h2>'+date+'(予定)</h2></div>');
+        $('col:nth-child(3)').css('width',0);
+        $('col:nth-child(4)').css('width',0);
+        $('col:nth-child(5)').css('width',0);
+        $('col:nth-child(6)').css('width',0);
+        $('#calendar-timeline .fc-resource-area').css('width',"20%");
     }
-
 
 });
