@@ -12,7 +12,12 @@
 <%= form_for :kintai, url: kanris_kintais_path, html: {class:'form-inline'}, method: :get do |f| %>
 
 <%= render "kanris/shared/header_kintai", f: f %>
-<%= link_to "データをエクスポート" , export_excel_kanris_kintais_path(format: 'xlsx', date: @date) %>
+<% if  @shainmasters.count == 1%>
+  <%= link_to "データをエクスポート" , export_excel_kanris_kintais_path(format: 'xlsx', date: @date, shainmaster: @shainmasters.ids) %>
+<% else %>
+  <%= link_to "データをエクスポート" , export_excel_kanris_kintais_path(format: 'xlsx', date: @date )%>
+<% end %>
+
 <hr>
 <table  id="kintai_table" class="table table-bordered table-hover " cellspacing="0" data-sort-name="name" data-sort-order="desc">
   <thead>
@@ -20,10 +25,16 @@
     <th rowspan="2" data-field="id" data-sortable="true">社員番号</th>
     <th rowspan="2">社員氏名</th>
     <th colspan="6">就 業 時 間</th>
-    <th rowspan="2">保守携帯</th>
+    <th rowspan="2">保守携帯回数</th>
     <th rowspan="2">休暇</th>
     <th rowspan="2">午前半休</th>
     <th rowspan="2">午後半休</th>
+    <th rowspan="2">出張回数</th>
+    <th rowspan="2">振替休日</th>
+    <th rowspan="2">半日振休（前）</th>
+    <th rowspan="2">半日振休（後）</th>
+    <th rowspan="2">休日出勤日数</th>
+    <th rowspan="2">夜間作業</th>
     <th rowspan="2"></th>
     <!--<th rowspan="2"></th>-->
     <!--<th rowspan="2"></th>-->
@@ -53,16 +64,26 @@
         <td><%= shainmaster.kintais.get_by_mounth(@date).sum :深夜残業時間 %></td>
         <td><%= shainmaster.kintais.get_by_mounth(@date).sum :普通保守時間 %></td>
         <td><%= shainmaster.kintais.get_by_mounth(@date).sum :深夜保守時間 %></td>
-        <td><%= shainmaster.kintais.get_by_mounth(@date).sum :保守携帯回数 %></td>
-        <td><%= shainmaster.kintais.day_off.count %></td>
-        <td><%= shainmaster.kintais.morning_off.count %></td>
-        <td><%= shainmaster.kintais.afternoon_off.count %></td>
+        <td><%= shainmaster.kintais.get_by_mounth_hoshukeitai(@date).sum :保守携帯回数 %></td>
+        <td><%= shainmaster.kintais.get_by_mounth(@date).day_off.count %></td>
+        <td><%= shainmaster.kintais.get_by_mounth(@date).morning_off.count %></td>
+        <td><%= shainmaster.kintais.get_by_mounth(@date).afternoon_off.count %></td>
+        <td><%= shainmaster.kintais.get_by_mounth(@date).business_trip.count %></td>
+        <td><%= shainmaster.kintais.get_by_mounth(@date).transfer_holiday.count %></td>
+        <td><%= shainmaster.kintais.get_by_mounth(@date).half_day_off_before.count %></td>
+        <td><%= shainmaster.kintais.get_by_mounth(@date).half_day_off_after.count %></td>
+        <td><%= shainmaster.kintais.get_by_mounth(@date).holiday_work.count %></td>
+        <td><%= shainmaster.kintais.get_by_mounth(@date).night_work.count %></td>
         <td><%= link_to "詳細", kanris_kintai_path(shainmaster.id, date: @date) %></td>
       </tr>
     <% end %>
   <% end %>
   </tbody>
 </table>
+
+<%= render 'footer', f: f%>
+
+
 <% end %>
 
 

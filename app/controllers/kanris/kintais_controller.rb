@@ -1,5 +1,6 @@
 class Kanris::KintaisController < ApplicationController
   before_action :require_kanriG_user!
+  respond_to :json
   def index
     @shainmasters = Shainmaster.get_kubun
     if params[:date].present?
@@ -7,9 +8,11 @@ class Kanris::KintaisController < ApplicationController
     else
       @date = Date.today.to_date
     end
+    @kintais = Kintai.get_by_mounth(@date)
     if params[:user_name].present?
       @user_name = params[:user_name]
       @shainmasters = Shainmaster.all.where(社員番号: @user_name)
+      @kintais = Kintai.selected_month(@user_name, @date)
     end
   end
 
@@ -24,11 +27,17 @@ class Kanris::KintaisController < ApplicationController
   end
 
   def export_excel
-    @shainmasters = Shainmaster.get_kubun.sort_by{|shain| shain.id.to_i}
     if params[:date].present?
       @date = params[:date].to_date
     else
       @date = Date.today.to_date
+    end
+    @kintais = Kintai.get_by_mounth(@date)
+    if params[:shainmaster].present?
+      @shainmasters = Shainmaster.all.where(社員番号: params[:shainmaster])
+      @kintais = Kintai.selected_month(@shainmasters, @date)
+    else
+      @shainmasters = Shainmaster.get_kubun.sort_by{|shain| shain.id.to_i}
     end
     respond_to do |format|
       format.html
