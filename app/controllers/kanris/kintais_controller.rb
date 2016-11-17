@@ -8,7 +8,7 @@ class Kanris::KintaisController < ApplicationController
     else
       @date = Date.today.to_date
     end
-    @kintais = Kintai.get_by_mounth(@date)
+    @kintais = Kintai.get_by_mounth(@date).where.not(社員番号: (Shainmaster.all.where(区分: true).map(&:社員番号)))
     if params[:user_name].present?
       @user_name = params[:user_name]
       @shainmasters = Shainmaster.all.where(社員番号: @user_name)
@@ -32,7 +32,7 @@ class Kanris::KintaisController < ApplicationController
     else
       @date = Date.today.to_date
     end
-    @kintais = Kintai.get_by_mounth(@date)
+    @kintais = Kintai.get_by_mounth(@date).where.not(社員番号: (Shainmaster.all.where(区分: true).map(&:社員番号)))
     if params[:shainmaster].present?
       @shainmasters = Shainmaster.all.where(社員番号: params[:shainmaster])
       @kintais = Kintai.selected_month(@shainmasters, @date)
