@@ -64,8 +64,10 @@ $(function(){
                 //},
                 eventRender: function(event, element, view) {
                     if (view.name === "agendaDay" || view.name === "agendaWeek") {
-                        element.find(".fc-title")
+                        if(event.job != undefined || event.comment != undefined){
+                            element.find(".fc-title")
                             .replaceWith('<div>'+event.job+'</div>'+'<div>'+event.comment+'</div>');
+                        }
                     }
                 }
             }
