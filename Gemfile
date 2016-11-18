@@ -3,7 +3,7 @@ source 'https://rubygems.org'
 ruby '2.3.1'
 gem 'rails'
 # gem 'sqlite3'
-
+gem 'best_in_place'
 gem 'sinatra'
 # passenger start
 gem 'passenger', '>= 5.0.4'
