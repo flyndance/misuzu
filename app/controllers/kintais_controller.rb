@@ -3,7 +3,7 @@ class KintaisController < ApplicationController
   before_action :set_kintai, only: [:edit, :update, :destroy]
   before_action :check_edit_kintai, only: [:edit]
 
-  respond_to :json
+  respond_to :json, :html
 
   include UsersHelper
 

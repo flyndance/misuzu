@@ -49,6 +49,9 @@ GEM
       actionpack (>= 3.1)
       axlsx (>= 2.0.1)
     bcrypt (3.1.11)
+    best_in_place (3.1.0)
+      actionpack (>= 3.2)
+      railties (>= 3.2)
     better_errors (2.1.1)
       coderay (>= 1.0.0)
       erubis (>= 2.6.6)
@@ -261,6 +264,7 @@ DEPENDENCIES
   axlsx (~> 2.0)
   axlsx_rails
   bcrypt (~> 3.1.7)
+  best_in_place
   better_errors
   binding_of_caller
   bootstrap-colorpicker-rails
@@ -306,4 +310,4 @@ RUBY VERSION
    ruby 2.3.1p112
 
 BUNDLED WITH
-   1.12.5
+   1.13.3
