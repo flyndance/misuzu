@@ -59,8 +59,10 @@
         <td><%= kintai.深夜残業時間 %></td>
         <td><%= kintai.普通保守時間 %></td>
         <td><%= kintai.深夜保守時間 %></td>
-        <td><%= best_in_place kintai, :保守携帯回数, :as => :select, :collection => [[0, "0:なし"], [1, "1:保守携帯"]]%></td>
-        <td><%= kintai.joutaimaster.try :name %></td>
+        <!-- <td style="white-space: pre" id="shinyahoshu<%= kintai.id %>"><%= best_in_place kintai, :深夜保守時間, :as => :input, activator: '#shinyahoshu' + kintai.id.to_s,:html_attrs => { size: 3 },:place_holder => "<i class='fa fa-edit'></i>"%></td> -->
+        <td style="white-space: pre" id="hoshukeitai<%= kintai.id %>" ><%= best_in_place kintai, :保守携帯回数, :as => :select, :collection => [["", ""], [1, "1:保守携帯"]], activator: '#hoshukeitai' + kintai.id.to_s,:place_holder => "<i class='fa fa-sort-desc'></i>", :inner_class => 'form_control'%></td>
+        <!-- <%= kintai.保守携帯回数 %> -->
+
         <td>
           <% if !kintai.備考.nil? && kintai.備考.length > 20%>
             <div class = "div_scoll">
