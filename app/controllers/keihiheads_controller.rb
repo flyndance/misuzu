@@ -53,7 +53,7 @@ class KeihiheadsController < ApplicationController
     #     # respond_with(@keihi, location: keihis_url)
     #     redirect_to new_keihihead_url
     # end
-    
+
     params[:keihihead][:日付] = Date.today if keihi_params[:日付].blank?
     @keihi = Keihihead.new(keihi_params)
     @keihi.id = 1
@@ -133,7 +133,8 @@ class KeihiheadsController < ApplicationController
     @kikans = Kikanmst.all
     @ekis = Eki.all
     # @shonins = Shoninshamst.current_user(session[:user])
-    @shonins = Shoninshamst.all
+    # @shonins = Shoninshamst.all
+    @shonins = Shoninshamst.where(申請者: session[:user])
     @jobs = Jobmaster.all
   end
 
