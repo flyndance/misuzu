@@ -71,12 +71,58 @@
 
     </div>
 
+
+
     <div class="row">
       <div class="col-md-12">
         <div class="spacer">
         </div>
       </div>
     </div>
+
+
+
+    <div class="row">
+      <div class="col-md-2">
+        <div class="input-group">
+          <input type='text' class="form-control" id="goto-date-input" name="goto-date-input">
+      <span class="input-group-btn">
+        <button class="btn btn-default" type="button" id="toggle-calendar-goto">
+          <span class="glyphicon glyphicon-calendar" aria-hidden="true"></span>
+        </button>
+      </span>
+        </div>
+      </div>
+      <div class="col-md-1">
+        <button id="goto-date-button" class="btn btn-default" type="button">Go!</button>
+      </div>
+      <!--<div class="col-md-4" align="right">-->
+        <!--<div class="btn-group" role="group" aria-label="...">-->
+          <!--<button id="month-view" type="button" class="btn btn-default">個人画面へ</button>-->
+          <!--<button id="day-view" type="button" class="btn btn-default">一覧画面へ</button>-->
+        <!--</div>-->
+      <!--</div>-->
+    </div>
+
+    <div class="spacer"></div>
+    <div class="row">
+      <div class="col-md-12">
+        <div id="calendar-month-view"></div>
+        <!--<div id="calendar-timeline"></div>-->
+      </div>
+    </div>
+
+    <%= render 'share/shain_modal', f:f %>
+    <input type="hidden" name="selected_user" id="selected_user"/>
+    <input type="hidden" name="selected_user_name" id="selected_user_name"/>
+
+    <div class="row">
+      <div class="col-md-12">
+        <div class="spacer">
+        </div>
+      </div>
+    </div>
+    <legend></legend>
 
     <div class="row">
       <div class="col-md-12">
@@ -135,49 +181,6 @@
         <%= link_to '新規イベント', new_event_path %>
       </div>
     </div>
-
-    <div class="row">
-      <div class="col-md-12">
-        <div class="spacer">
-        </div>
-      </div>
-    </div>
-
-    <legend></legend>
-
-    <div class="row">
-      <div class="col-md-2">
-        <div class="input-group">
-          <input type='text' class="form-control" id="goto-date-input" name="goto-date-input">
-      <span class="input-group-btn">
-        <button class="btn btn-default" type="button" id="toggle-calendar-goto">
-          <span class="glyphicon glyphicon-calendar" aria-hidden="true"></span>
-        </button>
-      </span>
-        </div>
-      </div>
-      <div class="col-md-1">
-        <button id="goto-date-button" class="btn btn-default" type="button">Go!</button>
-      </div>
-      <!--<div class="col-md-4" align="right">-->
-        <!--<div class="btn-group" role="group" aria-label="...">-->
-          <!--<button id="month-view" type="button" class="btn btn-default">個人画面へ</button>-->
-          <!--<button id="day-view" type="button" class="btn btn-default">一覧画面へ</button>-->
-        <!--</div>-->
-      <!--</div>-->
-    </div>
-
-    <div class="spacer"></div>
-    <div class="row">
-      <div class="col-md-12">
-        <div id="calendar-month-view"></div>
-        <!--<div id="calendar-timeline"></div>-->
-      </div>
-    </div>
-
-    <%= render 'share/shain_modal', f:f %>
-    <input type="hidden" name="selected_user" id="selected_user"/>
-    <input type="hidden" name="selected_user_name" id="selected_user_name"/>
 </div>
 
 <!--<div class="row">-->
