@@ -63,7 +63,9 @@ $(function(){
                     //alert(data.sUrl);
                 },
                 dayRender: function(date, element, view){
-                    element.append("<a id='abc' onclick='showModal(\""+date.format()+"\"); return false;' style='cursor: pointer;'><i class='fa fa-pencil'>保守携帯回数</i></a>");
+                    var date_convert = new Date(date.format());
+                    if(date_convert.getDay()!==6 && date_convert.getDay()!==0)
+                        element.append("<a id='abc' onclick='showModal(\""+date.format()+"\"); return false;' style='cursor: pointer;'><i class='fa fa-pencil'>保守携帯</i></a>");
                 },
                 //eventRender: function(event, element, view) {
                 //    element.qtip({
