@@ -7,7 +7,7 @@ class Shainmaster < ActiveRecord::Base
   validates :社員番号,:氏名, :連携用社員番号, presence: true
   validates :社員番号, uniqueness: true
 
-  has_one :rorumenba
+  has_one :rorumenba, foreign_key: :社員番号
   has_many :events, dependent: :destroy, foreign_key: :社員番号
   has_one :user, dependent: :destroy, foreign_key: :担当者コード
   has_many :kairan, dependent: :destroy, foreign_key: :発行者

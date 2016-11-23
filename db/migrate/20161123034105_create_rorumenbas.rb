@@ -3,7 +3,7 @@ class CreateRorumenbas < ActiveRecord::Migration
     create_table :ロールメンバ do |t|
       t.string :ロールコード, :limit => 10, null: false
       t.string :社員番号, :limit => 10, null: false
-      t.string :氏名, :limit => 30　　　　　　
+      t.text :氏名1
       t.string :ロール内序列, :limit =>10
       t.timestamps null: false
     end
