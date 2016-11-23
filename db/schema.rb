@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161103042638) do
+ActiveRecord::Schema.define(version: 20161123070901) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -145,6 +145,16 @@ ActiveRecord::Schema.define(version: 20161103042638) do
     t.datetime "退社時刻"
     t.decimal  "遅刻時間"
     t.decimal  "早退時間"
+  end
+
+  create_table "rorumasters", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "rorumenbas", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "temps", force: :cascade do |t|
