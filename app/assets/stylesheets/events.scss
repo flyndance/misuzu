@@ -2,6 +2,7 @@
 /*.fc-sat, .fc-sun {*/
 /*background-color: #ddd !important;*/
 /*}*/
+@import "font-awesome";
 .fc-sat, .fc-sun {
   color: red;
   background-color: rgb(245,245,245);
@@ -10,4 +11,7 @@
 div.update-shozai label {
   font-weight: normal;
   float: right;
+}
+.fc-bg td {
+  vertical-align: bottom;
 }
