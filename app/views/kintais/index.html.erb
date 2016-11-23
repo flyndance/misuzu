@@ -8,10 +8,8 @@
   <li><%= link_to 'カレンダー', events_path %></li>
   <li class="active">勤怠</li>
 </ol>
-
 <%= form_for :kintai, url: kintais_path, html: {class:'form-inline'}, method: :get do |f|%>
 <%= render 'header', f:f %>
-
 <table  id="kintai-table" class="table  table-bordered table-hover" cellspacing="0" >
   <thead>
   <tr>
@@ -46,23 +44,35 @@
     <% @kintais.each do |kintai| %>
       <% add_class = 'warning' if kintai.曜日.in?(['日','土']) ||
         kintai.try(:holiday) == '1' %>
+      <% add_class = 'success' if kintai.日付 == @date_now %>
       <tr id="kintai-<%= kintai.id %>" class="<%= add_class %>">
         <td><%= kintai.日付 %></td>
         <td><%= kintai.曜日 %></td>
         <td><%= kintai.勤務タイプ %></td>
         <td><%= kintai.出勤時刻.to_s(:time) unless kintai.出勤時刻.blank? %></td>
         <td><%= kintai.退社時刻.to_s(:time) unless kintai.退社時刻.blank? %></td>
-        <td><%= kintai.実労働時間 %></td>
-        <td><%= kintai.遅刻時間 %></td>
+        <% if @kintai.入力済 == '0' || @kintai.入力済.nil? %>
+          <td style="white-space: pre" id="jitsuroudou<%= kintai.id %>"><%= best_in_place kintai, :実労働時間, :as => :input, activator: '#jitsuroudou' + kintai.id.to_s,:html_attrs => { size: 3 },:place_holder => "<i class='fa fa-edit'></i>"%></td>
+          <td style="white-space: pre" id="chikoku<%= kintai.id %>"><%= best_in_place kintai, :遅刻時間, :as => :input, activator: '#chikoku' + kintai.id.to_s,:html_attrs => { size: 3 },:place_holder => "<i class='fa fa-edit'></i>"%></td>
         <!--<td><%# kintai.早退時間 %></td>-->
-        <td><%= kintai.普通残業時間 %></td>
-        <td><%= kintai.深夜残業時間 %></td>
-        <td><%= kintai.普通保守時間 %></td>
-        <td><%= kintai.深夜保守時間 %></td>
-        <!-- <td style="white-space: pre" id="shinyahoshu<%= kintai.id %>"><%= best_in_place kintai, :深夜保守時間, :as => :input, activator: '#shinyahoshu' + kintai.id.to_s,:html_attrs => { size: 3 },:place_holder => "<i class='fa fa-edit'></i>"%></td> -->
-        <td style="white-space: pre" id="hoshukeitai<%= kintai.id %>" ><%= best_in_place kintai, :保守携帯回数, :as => :select, :collection => [["", ""], [1, "1:保守携帯"]], activator: '#hoshukeitai' + kintai.id.to_s,:place_holder => "<i class='fa fa-sort-desc'></i>", :inner_class => 'form_control'%></td>
-        <!-- <%= kintai.保守携帯回数 %> -->
-
+          <td style="white-space: pre" id="futsuzangyou<%= kintai.id %>"><%= best_in_place kintai, :普通残業時間, :as => :input, activator: '#futsuzangyou' + kintai.id.to_s,:html_attrs => { size: 3 },:place_holder => "<i class='fa fa-edit'></i>"%></td>
+          <td style="white-space: pre" id="shinyazangyou<%= kintai.id %>"><%= best_in_place kintai, :深夜残業時間, :as => :input, activator: '#shinyazangyou' + kintai.id.to_s,:html_attrs => { size: 3 },:place_holder => "<i class='fa fa-edit'></i>"%></td>
+          <td style="white-space: pre" id="fushuuhoshu<%= kintai.id %>"><%= best_in_place kintai, :普通保守時間, :as => :input, activator: '#fushuuhoshu' + kintai.id.to_s,:html_attrs => { size: 3 },:place_holder => "<i class='fa fa-edit'></i>"%></td>
+          <td style="white-space: pre" id="shinyahoshu<%= kintai.id %>"><%= best_in_place kintai, :深夜保守時間, :as => :input, activator: '#shinyahoshu' + kintai.id.to_s,:html_attrs => { size: 3 },:place_holder => "<i class='fa fa-edit'></i>", readonly: true%></td>
+          <td style="white-space: pre" id="hoshukeitai<%= kintai.id %>" ><%= best_in_place kintai, :保守携帯回数, :as => :select, :collection => [["", ""], [1, "1:保守携帯"]], activator: '#hoshukeitai' + kintai.id.to_s,:place_holder => "<i class='fa fa-sort-desc'></i>", :inner_class => 'form_control'%></td>
+        <% else %>
+          <td><%= kintai.実労働時間 %></td>
+          <td><%= kintai.遅刻時間 %></td>
+          <td><%= kintai.普通残業時間 %></td>
+          <td><%= kintai.深夜残業時間 %></td>
+          <td><%= kintai.普通保守時間 %></td>
+          <td><%= kintai.深夜保守時間 %></td>
+          <td> <% if @kintai.保守携帯回数 == 1 %> 1:保守携帯 <% end %></td>
+        <% end %>
+        <td><% if !kintai.状態1.nil? %>
+          <%= kintai.joutaimaster.状態名 %>
+          <% end %>
+        </td>
         <td>
           <% if !kintai.備考.nil? && kintai.備考.length > 20%>
             <div class = "div_scoll">
