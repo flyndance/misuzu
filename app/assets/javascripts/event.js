@@ -54,8 +54,16 @@ $(function(){
                 },
                 dayClick: function(date, jsEvent, view) {
                    //window.open('http://misuzu.herokuapp.com/events/new?start_at='+date.format());
-                   window.open('/events/new?start_at='+date.format());
+                   var calendar = document.getElementById('calendar-month-view');
+
+                    calendar.ondblclick = function() {
+                       window.open('/events/new?start_at='+date.format());
+
+                    }
                     //alert(data.sUrl);
+                },
+                dayRender: function(date, element, view){
+                    element.append("<a id='abc' onclick='showModal(\""+date.format()+"\"); return false;' style='cursor: pointer;'><i class='fa fa-pencil'>保守携帯回数</i></a>");
                 },
                 //eventRender: function(event, element, view) {
                 //    element.qtip({
@@ -226,6 +234,33 @@ $(function () {
     $('#toggle-calendar-goto').click(function () {
         $('#goto-date-input').data("DateTimePicker").toggle();
     });
+    $('#save').click(function () {
+        var hoshukeitai = $("#kintai_保守携帯回数").val();
+        var date_kintai = $("#kintai_日付").val();
+        if (!date_kintai || !hoshukeitai) return
+        jQuery.ajax({
+            url: '/events/ajax',
+            data: {id: 'kintai_保守携帯回数',hoshukeitai: hoshukeitai, date_kintai: date_kintai},
+            type: "POST",
+            // processData: false,
+            // contentType: 'application/json',
+
+            success: function(data) {
+               if(data.kintai_id != null){
+                    console.log("getAjax kintai_id:"+ data.kintai_id);
+                }
+                else{
+
+                    console.log("getAjax kintai_id:"+ data.kintai_id);
+                }
+            },
+            failure: function() {
+                console.log("kintai_保守携帯回数 keydown Unsuccessful");
+            }
+        });
+        $('#kintai-new-modal').modal('hide');
+    });
+
 
     //$('#開始').click(function () {
     //    $('#event_開始').data("DateTimePicker").toggle();
@@ -807,3 +842,7 @@ $(function(){
         $('.event_有無').show();
     }
 });
+function showModal(date) {
+    $('#kintai-new-modal').modal('show');
+    $('#kintai_日付').val(date);
+}

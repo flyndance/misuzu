@@ -70,7 +70,7 @@
           <td> <% if @kintai.保守携帯回数 == 1 %> 1:保守携帯 <% end %></td>
         <% end %>
         <td><% if !kintai.状態1.nil? %>
-          <%= kintai.joutaimaster.状態名 %>
+          <%= kintai.joutaimaster.try(:状態名) %>
           <% end %>
         </td>
         <td>

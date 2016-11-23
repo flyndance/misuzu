@@ -22,6 +22,7 @@ class EventsController < ApplicationController
       shain.回覧件数 = @kairanCount
       shain.save
     end
+    @kintai = Kintai.first
 
   rescue
     @events = Shainmaster.take.events
@@ -196,6 +197,13 @@ class EventsController < ApplicationController
        end
        respond_to do |format|
          format.json { render json: return_data}
+       end
+      when 'kintai_保守携帯回数'
+       kintai = Kintai.where(日付: params[:date_kintai],社員番号: session[:user]).first
+       Kintai.find(kintai.id).update(保守携帯回数: params[:hoshukeitai])
+       data = {kintai_id: kintai.id}
+       respond_to do |format|
+         format.json { render json: data}
        end
    end
   end
