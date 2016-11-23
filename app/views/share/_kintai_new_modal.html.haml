@@ -12,4 +12,4 @@
           = f.input :保守携帯回数, label: '保守携帯' ,collection: (0..1).map {|i| [display[i],i]}, include_blank: false, selected: @kintai.保守携帯回数
           /   = f.select :工程コード, @kouteis.map { |k| [k.工程名, k.工程コード] }, {include_blank: true}, {class: 'form-control', style: 'width:150px'}
 
-          = f.button :button, '登録する', type: :button, id: :save
+          = f.button :button, '登録する', class: 'btn btn-primary',type: :button, id: :save
