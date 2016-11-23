@@ -7,6 +7,6 @@ class CreateRorumenbas < ActiveRecord::Migration
       t.string :ロール内序列, :limit =>10
       t.timestamps null: false
     end
-    add_index :ロールコード, :社員番号
+    add_index :ロールメンバ, [:社員番号,:ロールコード]
   end
 end

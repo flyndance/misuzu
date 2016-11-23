@@ -147,20 +147,31 @@ ActiveRecord::Schema.define(version: 20161123070901) do
     t.decimal  "早退時間"
   end
 
-  create_table "rorumasters", force: :cascade do |t|
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  create_table "rorumenbas", force: :cascade do |t|
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
   create_table "temps", force: :cascade do |t|
     t.date    "date"
     t.boolean "checked"
   end
+
+  create_table "ロールマスタ", force: :cascade do |t|
+    t.string   "ロールコード",     limit: 10, null: false
+    t.string   "ロール名",       limit: 40
+    t.string   "序列",         limit: 10
+    t.datetime "created_at",            null: false
+    t.datetime "updated_at",            null: false
+  end
+
+  add_index "ロールマスタ", ["ロールコード"], name: "index_ロールマスタ_on_ロールコード", using: :btree
+
+  create_table "ロールメンバ", force: :cascade do |t|
+    t.string   "ロールコード",     null: false
+    t.string   "社員番号",       null: false
+    t.string   "氏名　　　　　　"
+    t.string   "ロール内序列"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "ロールメンバ", ["社員番号", "ロールコード"], name: "index_ロールメンバ_on_社員番号_and_ロールコード", using: :btree
 
   create_table "会社マスタ", id: false, force: :cascade do |t|
     t.string   "会社コード",      null: false

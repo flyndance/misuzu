@@ -7,6 +7,6 @@ class CreateRorumasters < ActiveRecord::Migration
 
 	  t.timestamps null: false
     end
-    add_index :ロールコード
+    add_index :ロールマスタ, :ロールコード
   end
 end
