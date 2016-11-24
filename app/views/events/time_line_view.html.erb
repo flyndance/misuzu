@@ -32,29 +32,24 @@
             <bold style="line-height:40px;margin-right:15px;font-weight:bold;">ロール</bold>
           </td>
           <td>
-            <select class="form-group">
-               <option value="volvo">Volvo</option>
-               <option value="saab">Saab</option>
-               <option value="mercedes">Mercedes</option>
-               <option value="audi">Audi</option>
-            </select>
+            <%= f.select :ロールコード, @role.map { |k| [k.ロール名, k.ロールコード] }, {include_blank: true}, {class: 'form-group'}%>
           </td>
           <td style="padding-bottom:15px;">
             <bold style="line-height:40px;margin-right:15px;margin-left:15px;font-weight:bold;">状態</bold>
           </td>
           <td>
             <!-- <%= f.input :状態, label: false%> -->
-            <select class="form-group">
-               <option value="volvo">Volvo</option>
-               <option value="saab">Saab</option>
-               <option value="mercedes">Mercedes</option>
-               <option value="audi">Audi</option>
-            </select>
+            <%= f.select :状態コード, @joutai.map { |k| [k.状態名, k.状態コード] }, {include_blank: true}, {class: 'form-group'}%>
           </td>
           <td><%= f.submit '検索', class: 'btn btn-primary', id:'kensaku', style: "margin-bottom: 15px;margin-left:15px;"%></td>
         </table>
       </div>
-      <div id="calendar-timeline"></div>
+      <% byebug%>
+      <% if @all_events.any? %>
+        <div id="calendar-timeline"></div>
+      <%else%>
+        <div>イベントがありません</div>
+      <%end%>
     </div>
   </div>
 </div>

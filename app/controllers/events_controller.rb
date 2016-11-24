@@ -40,6 +40,8 @@ class EventsController < ApplicationController
   end
 
   def time_line_view
+    @role = Rorumaster.all
+    @joutai = Joutaimaster.all
     if request.post?
       case params[:commit]
         when '一覧'
@@ -56,13 +58,39 @@ class EventsController < ApplicationController
           redirect_to kairans_url
         when '設備予約'
           redirect_to setsubiyoyakus_url
+        when '検索'
+            # @all_events = Event.all.where(ロールコード: params[:ロールコード]);
+            @all_events = []
+            if params[:timeline][:状態コード].empty? && params[:timeline][:ロールコード].empty?
+              @all_events = Event.all
+            else
+              if params[:timeline][:状態コード].empty? && !params[:timeline][:ロールコード].empty?
+                rorumenba = Rorumaster.find(params[:timeline][:ロールコード]).rorumenba
+                @all_event=rorumenba
+                rorumenba.each do |r|
+                  e = r.shainmaster.events.all
+                  if !e[0].nil?
+                    @all_events.push(e)
+                  end
+                end
+              end
+              if params[:timeline][:ロールコード].empty? && !params[:timeline][:状態コード].empty?
+                @all_events=Event.where(状態コード: params[:timeline][:状態コード])
+                byebug
+                @shains = Shainmaster.where(タイムライン区分: false).reorder(:所属コード, :役職コード, :序列, :社員番号).all
+                render 'time_line_view'
+              end
+            end
+            @shains = Shainmaster.where(タイムライン区分: false).reorder(:所属コード, :役職コード, :序列, :社員番号).all
+            render 'time_line_view'
       end
+    else
+      @all_events = Event.all
+      @shains = Shainmaster.where(タイムライン区分: false).reorder(:所属コード, :役職コード, :序列, :社員番号).all
     end
+    rescue
+      @events = Shainmaster.take.events
     # @all_events = Event.where("Date(開始) = ?", Date.today.to_s(:db))
-    @all_events = Event.all
-    @shains = Shainmaster.where(タイムライン区分: false).reorder(:所属コード, :役職コード, :序列, :社員番号).all
-  rescue
-    @events = Shainmaster.take.events
   end
 
   def edit
