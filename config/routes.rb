@@ -1,4 +1,8 @@
 Jpt::Application.routes.draw do
+  get 'rorumenbas/new'
+
+  get 'rorumasters/new'
+
   resources :yuusens do
     collection {get :export_csv}
     collection {post :import}
@@ -155,6 +159,14 @@ Jpt::Application.routes.draw do
   end
 
   resources :setsubiyoyakus do
+  end
+
+  resources :rorumasters do
+    collection { post :import}
+    collection {get :export_csv}
+  end
+
+  resources :rorumenbas do
   end
 
   constraints(:id => /\w+(,\w+)*/) do

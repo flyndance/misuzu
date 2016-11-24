@@ -21,6 +21,7 @@
             - if @kairanCount > 0
               %span.badge #{@kairanCount}
           %li.list-group-item= link_to '設備予約', setsubiyoyakus_path
+          %li.list-group-item= link_to 'ロールメンバ', rorumenbas_path
 
 .panel.panel-default
   .panel-heading
@@ -41,19 +42,20 @@
           %li.list-group-item= link_to '所在マスタ', shozais_path
           %li.list-group-item= link_to '役職マスタ', yakushokumasters_path
           %li.list-group-item= link_to 'ジュピター休日', jpt_holiday_msts_path
-      .col-md-3
-        %ul.list-group
           %li.list-group-item= link_to '機関マスタ', kikanmsts_path
+      .col-md-3
+        %ul.list-group   
           %li.list-group-item= link_to '駅マスタ', ekis_path
           %li.list-group-item= link_to '承認者マスタ', shoninshamsts_path
           %li.list-group-item= link_to '分類マスタ', bunruis_path
           %li.list-group-item= link_to '状態マスタ', joutaimasters_path
           %li.list-group-item= link_to '優先', yuusens_path
+          %li.list-group-item= link_to '場所区分マスタ', bashokubunmsts_path
       .col-md-3
         %ul.list-group
-          %li.list-group-item= link_to '場所区分マスタ', bashokubunmsts_path
           %li.list-group-item= link_to '伝言回答マスタ', dengonkaitous_path
           %li.list-group-item= link_to '伝言用件マスタ', dengonyoukens_path
           %li.list-group-item= link_to '通信制御マスタ', tsushinseigyous_path
           %li.list-group-item= link_to '回覧用件マスタ', kairanyokenmsts_path
           %li.list-group-item= link_to '設備マスタ', setsubis_path
+          %li.list-group-item= link_to 'ロールマスタ', rorumasters_path
