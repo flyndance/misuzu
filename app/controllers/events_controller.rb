@@ -76,7 +76,6 @@ class EventsController < ApplicationController
               end
               if params[:timeline][:ロールコード].empty? && !params[:timeline][:状態コード].empty?
                 @all_events=Event.where(状態コード: params[:timeline][:状態コード])
-                byebug
                 @shains = Shainmaster.where(タイムライン区分: false).reorder(:所属コード, :役職コード, :序列, :社員番号).all
                 render 'time_line_view'
               end
