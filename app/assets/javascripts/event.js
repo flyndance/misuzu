@@ -847,4 +847,26 @@ $(function(){
 function showModal(date) {
     $('#kintai-new-modal').modal('show');
     $('#kintai_日付').val(date);
+    jQuery.ajax({
+        url: '/events/ajax',
+        data: {id: 'kintai_getData', date_kintai: date},
+        type: "POST",
+        // processData: false,
+        // contentType: 'application/json',
+
+        success: function(data) {
+            if(data.kintai_hoshukeitai != null){
+                $('#kintai_保守携帯回数').val(data.kintai_hoshukeitai);
+                console.log("getAjax kintai_id:"+ data.kintai_hoshukeitai);
+            }
+            else{
+                $('#kintai_保守携帯回数').val(data.kintai_hoshukeitai);
+                console.log("getAjax kintai_id:"+ data.kintai_hoshukeitai);
+            }
+        },
+        failure: function() {
+            console.log("kintai_保守携帯回数 keydown Unsuccessful");
+        }
+    });
+
 }

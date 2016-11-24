@@ -205,6 +205,13 @@ class EventsController < ApplicationController
        respond_to do |format|
          format.json { render json: data}
        end
+     when 'kintai_getData'
+       kintai = Kintai.where(日付: params[:date_kintai],社員番号: session[:user]).first
+
+       data = {kintai_hoshukeitai: kintai.try(:保守携帯回数)}
+       respond_to do |format|
+         format.json { render json: data}
+       end
    end
   end
 
