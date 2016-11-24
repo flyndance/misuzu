@@ -239,6 +239,7 @@ class EventsController < ApplicationController
        respond_to do |format|
          format.json { render json: data}
        end
+       # byebug
    end
   end
 
