@@ -8,14 +8,18 @@
           %li.list-group-item= link_to 'カレンダー', events_path
           %li.list-group-item= link_to 'タイムライン', time_line_view_events_path
           %li.list-group-item= link_to '経費承認', shonin_search_keihiheads_path
-          %li.list-group-item= link_to '伝言', dengons_path
+          %li.list-group-item
+            = link_to '伝言', dengons_path
+            - if @dengonCount > 0
+              %span.badge #{@dengonCount}
           %li.list-group-item= link_to '勤怠', kintais_path
           %li.list-group-item= link_to '経費', keihiheads_path
       .col-md-3
         %ul.list-group
           %li.list-group-item
             = link_to '回覧', kairans_path
-            %span.badge #{@kairanCount}
+            - if @kairanCount > 0
+              %span.badge #{@kairanCount}
           %li.list-group-item= link_to '設備予約', setsubiyoyakus_path
 
 .panel.panel-default
