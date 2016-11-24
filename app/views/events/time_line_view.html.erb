@@ -18,15 +18,42 @@
 <div class="row">
   <div class="col-md-12">
     <div class="timeline-view">
-      <div class="pull-left">
-        <%= f.submit '勤務', class: 'btn btn-default', id:'kintai'%>
-        <%= f.submit '経費', class: 'btn btn-default', id:'keihi'%>
-        <%= f.submit '承認', class: 'btn btn-default', id:'shonin'%>
-        <%= f.submit '伝言', class: 'btn btn-default', id:'dengon'%>
-        <%= f.submit '回覧', class: 'btn btn-default', id:'kairan'%>
-        <%= f.submit '設備予約', class: 'btn btn-default', id:'setsubiyoyaku'%>
+      <div style="height:55px;">
+        <div class="pull-left">
+          <%= f.submit '勤務', class: 'btn btn-default', id:'kintai'%>
+          <%= f.submit '経費', class: 'btn btn-default', id:'keihi'%>
+          <%= f.submit '承認', class: 'btn btn-default', id:'shonin'%>
+          <%= f.submit '伝言', class: 'btn btn-default', id:'dengon'%>
+          <%= f.submit '回覧', class: 'btn btn-default', id:'kairan'%>
+          <%= f.submit '設備予約', class: 'btn btn-default', id:'setsubiyoyaku'%>
+        </div>
+        <table class="pull-right">
+          <td style="padding-bottom:15px;">
+            <bold style="line-height:40px;margin-right:15px;font-weight:bold;">ロール</bold>
+          </td>
+          <td>
+            <select class="form-group">
+               <option value="volvo">Volvo</option>
+               <option value="saab">Saab</option>
+               <option value="mercedes">Mercedes</option>
+               <option value="audi">Audi</option>
+            </select>
+          </td>
+          <td style="padding-bottom:15px;">
+            <bold style="line-height:40px;margin-right:15px;margin-left:15px;font-weight:bold;">状態</bold>
+          </td>
+          <td>
+            <!-- <%= f.input :状態, label: false%> -->
+            <select class="form-group">
+               <option value="volvo">Volvo</option>
+               <option value="saab">Saab</option>
+               <option value="mercedes">Mercedes</option>
+               <option value="audi">Audi</option>
+            </select>
+          </td>
+          <td><%= f.submit '検索', class: 'btn btn-primary', id:'kensaku', style: "margin-bottom: 15px;margin-left:15px;"%></td>
+        </table>
       </div>
-      <br><br>
       <div id="calendar-timeline"></div>
     </div>
   </div>
