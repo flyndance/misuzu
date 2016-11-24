@@ -64,8 +64,43 @@ $(function(){
                 },
                 dayRender: function(date, element, view){
                     var date_convert = new Date(date.format());
-                    if(date_convert.getDay()!==6 && date_convert.getDay()!==0)
-                        element.append("<a id='abc' onclick='showModal(\""+date.format()+"\"); return false;' style='cursor: pointer;'><i class='fa fa-pencil'>保守携帯</i></a>");
+                    if(date_convert.getDay()!==6 && date_convert.getDay()!==0){
+                        jQuery.ajax({
+                        url: '/events/ajax',
+                        data: {id: 'kintai_getData', date_kintai: date.format()},
+                        type: "POST",
+                        // processData: false,
+                        // contentType: 'application/json',
+
+                        success: function(data) {
+                            element.append("<button id='bt-hoshu-1"+date.format()+"' onclick='showModal(\""+date.format()+"\",\"0\"); return false;' "+
+                                    "value=1 class='btn btn-hoshu' type='button'>1：保守携帯</button>"+
+                                    "<button id='bt-hoshu-0"+date.format()+"' onclick='showModal(\""+date.format()+"\",\"1\"); return false;' "+
+                                    "value=0 class='btn btn-primary' type='button'>0：保守携帯</button>");
+                            if(data.kintai_hoshukeitai == 1){
+                                $('#bt-hoshu-1'+date.format()).show();
+                                $('#bt-hoshu-0'+date.format()).hide();
+                                // element.append("<a id='abc' value=100 onclick='showModal(\""+date.format()+"\"); return false;' style='cursor: pointer;'><i class='fa fa-pencil'>"+data.kintai_hoshukeitai+"</i></a>");
+                                console.log("getAjax kintai_id:"+ data.kintai_hoshukeitai);
+                            }
+                            else{
+                                $('#bt-hoshu-1'+date.format()).hide();
+                                $('#bt-hoshu-0'+date.format()).show();
+                                console.log("getAjax kintai_id:"+ data.kintai_hoshukeitai);
+                            }
+                        },
+                        failure: function() {
+                            console.log("kintai_保守携帯回数 keydown Unsuccessful");
+                        }
+                    });
+                    }
+
+                    // var date_convert = new Date(date.format());
+                    // if(date_convert.getDay()!==6 && date_convert.getDay()!==0&&hoshukeitai!=null)
+                    //     element.append("<a id='abc' value=100 onclick='showModal(\""+date.format()+"\"); return false;' style='cursor: pointer;'><i class='fa fa-pencil'>"+hoshukeitai+"</i></a>");
+                    // var date_convert = new Date(date.format());
+                    // if(date_convert.getDay()!==6 && date_convert.getDay()!==0)
+                    //     element.append("<a id='abc' onclick='showModal(\""+date.format()+"\"); return false;' style='cursor: pointer;'><i class='fa fa-pencil'>保守携帯</i></a>");
                 },
                 //eventRender: function(event, element, view) {
                 //    element.qtip({
@@ -864,29 +899,39 @@ $(function(){
         $('.event_有無').show();
     }
 });
-function showModal(date) {
-    $('#kintai-new-modal').modal('show');
-    $('#kintai_日付').val(date);
+function showModal(date,hoshukeitai) {
+
+
+    // if(bt_val==1) hoshukeitai=0;
+    // else if(hoshukeitai=1;
+    if (hoshukeitai == "1"){
+        $('#bt-hoshu-1'+date).show();
+        $('#bt-hoshu-0'+date).hide();
+    }else{
+        $('#bt-hoshu-1'+date).hide();
+        $('#bt-hoshu-0'+date).show();
+    }
+    if (!date || !hoshukeitai) return
     jQuery.ajax({
         url: '/events/ajax',
-        data: {id: 'kintai_getData', date_kintai: date},
+        data: {id: 'kintai_保守携帯回数',hoshukeitai: hoshukeitai, date_kintai: date},
         type: "POST",
         // processData: false,
         // contentType: 'application/json',
 
         success: function(data) {
-            if(data.kintai_hoshukeitai != null){
-                $('#kintai_保守携帯回数').val(data.kintai_hoshukeitai);
-                console.log("getAjax kintai_id:"+ data.kintai_hoshukeitai);
+            if(data.kintai_id != null){
+                console.log("getAjax kintai_id:"+ data.kintai_id);
             }
             else{
-                $('#kintai_保守携帯回数').val(data.kintai_hoshukeitai);
-                console.log("getAjax kintai_id:"+ data.kintai_hoshukeitai);
+
+                console.log("getAjax kintai_id:"+ data.kintai_id);
             }
         },
         failure: function() {
             console.log("kintai_保守携帯回数 keydown Unsuccessful");
         }
     });
-
+    $('#bt-hoshu-1').show();
+    $('#bt-hoshu-0').hide();
 }
