@@ -208,6 +208,17 @@ $(function(){
 
 });
 
+
+$(document).ready(function(){
+    $('#after_div').hide();
+    $('#hide_event_button').hide();
+
+    // $('#month-view').show('fast',function(){
+    //     $('#after_div').show();
+    // });
+    // $('#after_div').modal('hide');
+
+});
 // readjust sizing after font load
 $(window).on('load', function() {
     $('#calendar-timeline').fullCalendar('render');
@@ -262,7 +273,16 @@ $(function () {
         });
         $('#kintai-new-modal').modal('hide');
     });
-
+    $('#hide_event_button').click(function () {
+        $('#hide_event_button').hide();
+        $('#show_event_button').show()
+        $('#after_div').hide();
+    });
+    $('#show_event_button').click(function () {
+        $('#hide_event_button').show();
+        $('#show_event_button').hide()
+        $('#after_div').show();
+    });
 
     //$('#開始').click(function () {
     //    $('#event_開始').data("DateTimePicker").toggle();
@@ -832,7 +852,7 @@ $(function(){
     //$('#calendar-month-view').show();
     //$('#calendar-timeline').hide();
 
-    $('#month-view').show();
+    // $('#month-view').show();
     //$('#calendar-timeline').show();
     //$('.timeline-view').show();
 });
