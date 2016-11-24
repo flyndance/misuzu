@@ -12,7 +12,7 @@
     </ol>
   </div>
 </div>
-
+<%= render 'share/kintai_new_modal' %>
 <%= simple_form_for @shain, url: custom_events_path, method: :post do |f| %>
 <div id="month-view">
     <div class="row-fluid">
@@ -113,7 +113,7 @@
     </div>
 
     <%= render 'share/shain_modal', f:f %>
-    <%= render 'share/kintai_new_modal' %>
+
     <input type="hidden" name="selected_user" id="selected_user"/>
     <input type="hidden" name="selected_user_name" id="selected_user_name"/>
 
