@@ -9,6 +9,12 @@ class RorumastersController < ApplicationController
 
   def index
   	@rorumaster = Rorumaster.all
+    @rorumaster.each do |rorumaster|
+      if rorumaster.id == ''
+        rorumaster.destroy
+      end
+    end
+    @rorumaster = Rorumaster.all
   end
 
   def show
