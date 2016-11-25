@@ -40,10 +40,10 @@ class RorumastersController < ApplicationController
       redirect_to rorumasters_path
     else
       begin
-        Setsubi.transaction do
-          Setsubi.delete_all
-          Setsubi.reset_pk_sequence
-          Setsubi.import(params[:file])
+        Rorumaster.transaction do
+          Rorumaster.delete_all
+          Rorumaster.reset_pk_sequence
+          Rorumaster.import(params[:file])
           notice = t 'app.flash.import_csv'
           redirect_to :back, notice: notice
         end
@@ -68,6 +68,6 @@ class RorumastersController < ApplicationController
     end
 
     def rorumaster_params
-      params.require(:rorumaster).permit(:ロールコード, :ロール名, :序列)
+      params.require(:rorumaster).permit :ロールコード, :ロール名, :序列
     end
 end
