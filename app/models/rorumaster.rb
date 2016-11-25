@@ -1,11 +1,11 @@
 class Rorumaster < ActiveRecord::Base
 	self.table_name = :ロールマスタ
 	self.primary_key = :ロールコード
-  validates :ロールコード,:ロール名, presence: true
-  validates :ロールコード, uniqueness: true
-  validates :ロールコード, length: {maximum: 10}
-  validates :ロール名, length: {maximum: 40}
-  validates :序列, length: {maximum: 10}
+  # validates :ロールコード,:ロール名, presence: true
+  # validates :ロールコード, uniqueness: true
+  # validates :ロールコード, length: {maximum: 10}
+  # validates :ロール名, length: {maximum: 40}
+  # validates :序列, length: {maximum: 10}
 	has_many :rorumenba,  dependent: :destroy, foreign_key: :ロールコード
 
   def self.import(file)
