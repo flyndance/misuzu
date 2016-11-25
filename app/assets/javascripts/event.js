@@ -63,8 +63,8 @@ $(function(){
                     //alert(data.sUrl);
                 },
                 dayRender: function(date, element, view){
-                    var date_convert = new Date(date.format());
-                    if(date_convert.getDay()!==6 && date_convert.getDay()!==0){
+
+
                         jQuery.ajax({
                         url: '/events/ajax',
                         data: {id: 'kintai_getData', date_kintai: date.format()},
@@ -93,7 +93,7 @@ $(function(){
                             console.log("kintai_保守携帯回数 keydown Unsuccessful");
                         }
                     });
-                    }
+
 
                     // var date_convert = new Date(date.format());
                     // if(date_convert.getDay()!==6 && date_convert.getDay()!==0&&hoshukeitai!=null)
