@@ -167,6 +167,8 @@ Jpt::Application.routes.draw do
   end
 
   resources :rorumenbas do
+    collection { post :import}
+    collection {get :export_csv}
   end
 
   constraints(:id => /\w+(,\w+)*/) do

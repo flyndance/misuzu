@@ -52,7 +52,10 @@ $(document).on('ready', function() {
 });
 
 $(document).ready(function() {
-    $('#export_table').DataTable();
+    $('#export_table').DataTable({"pagingType": "full_numbers"
+        , "oLanguage": {
+            "sUrl": "../../assets/resource/dataTable_ja.txt"
+        }});
 } );
 $(document).ready(function() {
 	$('#kintai_table').DataTable({
