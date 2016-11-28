@@ -30,7 +30,7 @@ class Shainmaster < ActiveRecord::Base
   belongs_to :shozai, foreign_key: :所在コード
   belongs_to :shozokumaster, foreign_key: :所属コード
   belongs_to :yakushokumaster, foreign_key: :役職コード
-
+  belongs_to :rorumaster, foreign_key: :デフォルトロール
   alias_attribute :title, :氏名
   alias_attribute :id, :社員番号
 
@@ -56,7 +56,7 @@ class Shainmaster < ActiveRecord::Base
   end
 
   def self.to_csv
-    attributes = %w{序列 社員番号 連携用社員番号 氏名 所属コード 直間区分 役職コード 内線電話番号 伝言件数 回覧件数 所在コード 有給残数 残業区分 勤務タイプ}
+    attributes = %w{序列 社員番号 連携用社員番号 氏名 所属コード デフォルトロール 直間区分 役職コード 内線電話番号 伝言件数 回覧件数 所在コード 有給残数 残業区分 勤務タイプ }
 
     CSV.generate(headers: true) do |csv|
       csv << attributes

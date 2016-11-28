@@ -4,12 +4,56 @@
 
 //calendar init
 $(document).ready(function() {
-    $.getJSON('/events/time_line_view', function(data) {
+
+
+    var roru = getUrlVars()["roru"];
+    var joutai = getUrlVars()["joutai"];
+    // var roru = $('#timeline_ロールコード').val();
+    // var joutai = $('#timeline_状態コード').val();
+    var param ='';
+    if(roru!=undefined&&joutai!=undefined){
+        $('#timeline_ロールコード').val(roru);
+        $('#timeline_状態コード').val(joutai);
+         param = 'roru='+roru+'&joutai='+joutai;
+    }else{
+        // jQuery.ajax({
+        //     url: '/events/ajax',
+        //     data: {id: 'roru_getData'},
+        //     type: "POST",
+        //     // processData: false,
+        //     // contentType: 'application/json',
+
+        //     success: function(data) {
+        //         if(data.roru != null){
+        //             $('#timeline_ロールコード').val(data.roru);
+        //             alert($('#timeline_ロールコード').val());
+        //             $('#timeline_状態コード').val("");
+        //             console.log("getAjax roru:"+ data.roru);
+        //         }
+        //         else{
+        //             $('#timeline_ロールコード').val("");
+        //             $('#timeline_状態コード').val("");
+        //             console.log("getAjax roru:"+ data.roru);
+        //         }
+        //     },
+        //     failure: function() {
+        //         console.log("roru keydown Unsuccessful");
+        //     }
+        // });
+        roru = $('#timeline_ロールコード').val();
+        joutai = $('#timeline_状態コード').val();
+        param = 'roru='+roru+'&joutai='+joutai;
+    }
+    // roru = $('#timeline_ロールコード').val();
+    // joutai = $('#timeline_状態コード').val();
+    // param = 'roru='+roru+'&joutai='+joutai;
+    // alert($('#timeline_ロールコード').val());
+    $.getJSON('/events/time_line_view?'+param, function(data) {
         var calendar = $('#calendar-timeline').fullCalendar(
             {
                 schedulerLicenseKey: 'CC-Attribution-NonCommercial-NoDerivatives',
                 //height: 1287,
-                height: 1400,
+                height: "auto",
                 //firstHour: '06:00',
                 businessHours:{
                     start: '09:00:00', // a start time (09am in this example)
@@ -51,23 +95,23 @@ $(document).ready(function() {
                 //        content: event.description
                 //    });
                 //},
-                resourceGroupField: 'shozoku',
+                // resourceGroupField: 'shozoku',
                 resourceColumns: [
                     //{
                     //group: true,
                     //labelText: '所属',
                     //field: 'shozoku'
                     //},
-                    {
-                        //group: true,
-                        labelText: '役職',
-                        field: 'yakushoku',
-                        width: 75,
-                        render: function(resources, el) {
-                            el.css('background-color', '#5bc0de');
-                        }
+                    // {
+                    //     //group: true,
+                    //     labelText: '役職',
+                    //     field: 'yakushoku',
+                    //     width: 75,
+                    //     render: function(resources, el) {
+                    //         el.css('background-color', '#5bc0de');
+                    //     }
 
-                    },
+                    // },
                     {
                         labelText: '社員名',
                         field: 'shain',
@@ -141,6 +185,7 @@ $(document).ready(function() {
 
 // readjust sizing after font load
 $(window).on('load', function() {
+
     $('#calendar-timeline').fullCalendar('render');
 });
 
@@ -215,3 +260,29 @@ $(document).on("click", ".fc-prev-button", function(){
     }
 
 });
+
+
+
+$(function(){
+
+    $('#kensaku').click(function() {
+        var roru = $('#timeline_ロールコード').val();
+        var joutai = $('#timeline_状態コード').val();
+        if (!window.location.hash)
+        {
+            window.location.replace('/events/time_line_view' + '?roru='+roru+'&joutai='+joutai);
+        }
+        // window.open('/events/time_line_view?roru='+roru+'&joutai='+joutai);
+    });
+
+
+});
+
+function getUrlVars() {
+    var vars = {};
+    var parts = window.location.href.replace(/[?&]+([^=&]+)=([^&]*)/gi,
+    function(m,key,value) {
+      vars[key] = value;
+    });
+    return vars;
+  }

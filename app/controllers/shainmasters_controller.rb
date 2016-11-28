@@ -23,6 +23,8 @@ class ShainmastersController < ApplicationController
       shainmaster_params[:所属コード]
     @shainmaster.yakushokumaster = Yakushokumaster.find_by 役職コード:
       shainmaster_params[:役職コード]
+    @shainmaster.rorumaster = Rorumaster.find_by ロールコード:
+      shainmaster_params[:デフォルトロール]
     flash[:notice] = t "app.flash.new_success" if @shainmaster.save
     respond_with @shainmaster
   end
@@ -32,6 +34,8 @@ class ShainmastersController < ApplicationController
       shainmaster_params[:所属コード]
     @shainmaster.yakushokumaster = Yakushokumaster.find_by 役職コード:
       shainmaster_params[:役職コード]
+    @shainmaster.rorumaster = Rorumaster.find_by ロールコード:
+      shainmaster_params[:デフォルトロール]
     flash[:notice] = t "app.flash.update_success" if
       @shainmaster.update_attributes shainmaster_params_for_update
     respond_with @shainmaster
@@ -79,12 +83,12 @@ class ShainmastersController < ApplicationController
   private
   def shainmaster_params
     params.require(:shainmaster).permit :序列, :社員番号, :連携用社員番号, :氏名,
-      :所属コード, :直間区分, :役職コード, :内線電話番号, :有給残数, :区分, :タイムライン区分
+      :所属コード, :直間区分, :役職コード, :内線電話番号, :有給残数, :区分, :タイムライン区分, :デフォルトロール
   end
 
   def shainmaster_params_for_update
     params.require(:shainmaster).permit :序列, :連携用社員番号, :氏名, :所属コード,
-      :直間区分, :役職コード, :内線電話番号, :有給残数, :区分, :タイムライン区分
+      :直間区分, :役職コード, :内線電話番号, :有給残数, :区分, :タイムライン区分, :デフォルトロール
   end
 
   def set_reference
