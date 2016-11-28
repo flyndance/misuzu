@@ -28,28 +28,42 @@
           <%= f.submit '設備予約', class: 'btn btn-default', id:'setsubiyoyaku'%>
         </div>
         <table class="pull-right">
-          <td style="padding-bottom:15px;">
+         <!--  <td>
+            <%= f.input :ロールコード, label:'部署' do %>
+              <%= f.select :ロールコード, @role.map { |k| [k.ロール名, k.ロールコード]}, {:selected => @roru.try(:ロールコード), include_blank: true},{class: 'form-control'}%>
+            <% end %>
+          </td>
+          <td>
+            <%= f.input :状態コード, label:'状態' do %>
+              <%= f.select :状態コード, @joutai.map { |k| [k.状態名, k.状態コード]}, {:prompt => "全て"}, {class: 'form-control'}%>
+            <% end %>
+          </td>
+          <td><button class="btn btn-primary" id="kensaku" type="button" style="margin-bottom: 15px;margin-left:15px">検索</button></td>
+ -->
+          <td>
             <bold style="line-height:40px;margin-right:15px;font-weight:bold;">部署</bold>
           </td>
           <td>
-            <!-- :selected => @roru.try(:ロールコード) -->
-            <%= f.select :ロールコード, @role.map { |k| [k.ロール名, k.ロールコード]}, {:selected => @roru.try(:ロールコード), include_blank: true},{class: 'form-group'}%>
+            <%= f.select :ロールコード, @role.map { |k| [k.ロール名, k.ロールコード]}, {:selected => @roru.try(:ロールコード), include_blank: true},{class: 'form-control'}%>
           </td>
-          <td style="padding-bottom:15px;">
+
+          <td>
             <bold style="line-height:40px;margin-right:15px;margin-left:15px;font-weight:bold;">状態</bold>
           </td>
           <td>
-            <!-- <%= f.input :状態, label: false%> -->
-            <%= f.select :状態コード, @joutai.map { |k| [k.状態名, k.状態コード]}, {:prompt => "全て"}, {class: 'form-group'}%>
+            <%= f.select :状態コード, @joutai.map { |k| [k.状態名, k.状態コード]}, {:prompt => "全て"}, {class: 'form-control'}%>
           </td>
-          <td><button class="btn btn-primary" id="kensaku" type="button" style="margin-bottom: 15px;margin-left:15px">検索</button></td>
-    <!--       <td><%= f.submit '検索', class: 'btn btn-primary', id:'kensaku', style: "margin-bottom: 15px;margin-left:15px;"%></td> -->
+          <td><button class="btn btn-primary" id="kensaku" type="button" style="margin-bottom: 0px;margin-left:15px">検索</button></td>
+
         </table>
       </div>
-
-
-
       <div id="calendar-timeline"></div>
+
+      <div class="row">
+        <div class="col-md-2">
+          <%= link_to '新規イベント', new_event_path %>
+        </div>
+      </div>
     </div>
   </div>
 </div>
