@@ -64,25 +64,24 @@ class EventsController < ApplicationController
     else
       vars = request.query_parameters
       @all_events = Event.all
-      @shains = Shainmaster.where(タイムライン区分: false).reorder(:所属コード, :役職コード, :序列, :社員番号).all
+      @shains = Shainmaster.where(タイムライン区分: false).all
       if vars['roru'].empty? && vars['joutai'].empty?
         @all_events = Event.all
-        @shains = Shainmaster.where(タイムライン区分: false).reorder(:所属コード, :役職コード, :序列, :社員番号).all
-
+        @shains = Shainmaster.joins(:rorumenbas).where(タイムライン区分: false).reorder("ロールメンバ.ロール内序列 asc")
       else
         if !vars['roru'].empty? && vars['joutai'].empty?
           rorumenbas = Rorumenba.where(ロールコード: vars['roru'])
-          @shains = Shainmaster.where(id: (Rorumenba.where(ロールコード: vars['roru']).map(&:社員番号)))
+          @shains = Shainmaster.where(タイムライン区分: false).where(id: (Rorumenba.where(ロールコード: vars['roru']).map(&:社員番号))).joins(:rorumenbas).reorder("ロールメンバ.ロール内序列 asc")
           @all_event=Event.all
         end
         if vars['roru'].empty? && !vars['joutai'].empty?
           @all_events=Event.where(状態コード: vars['joutai'])
-          @shains = Shainmaster.where(タイムライン区分: false).reorder(:所属コード, :役職コード, :序列, :社員番号).all
+          @shains = Shainmaster.where(タイムライン区分: false).all.joins(:rorumenbas).reorder("ロールメンバ.ロール内序列 asc")
         end
         if !vars['roru'].empty? && !vars['joutai'].empty?
           @all_events=Event.where(状態コード: vars['joutai'])
           rorumenbas = Rorumenba.where(ロールコード: vars['roru'])
-          @shains = Shainmaster.where(id: (Rorumenba.where(ロールコード: vars['roru']).map(&:社員番号)))
+          @shains = Shainmaster.where(タイムライン区分: false).where(id: (Rorumenba.where(ロールコード: vars['roru']).map(&:社員番号))).joins(:rorumenbas).reorder("ロールメンバ.ロール内序列 asc")
         end
       end
 

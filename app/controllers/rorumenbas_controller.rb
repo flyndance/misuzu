@@ -33,7 +33,7 @@ class RorumenbasController < ApplicationController
   def update
     @shains = Shainmaster.all
     @rorumenba.update(rorumenba_params)
-    respond_with(@btn-textrorumenba)
+    respond_with(@rorumenba)
   end
 
   def destroy
