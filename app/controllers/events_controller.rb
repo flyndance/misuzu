@@ -60,34 +60,6 @@ class EventsController < ApplicationController
           redirect_to kairans_url
         when '設備予約'
           redirect_to setsubiyoyakus_url
-        when '検索'
-            # @all_events = Event.all.where(ロールコード: params[:ロールコード]);
-            byebug
-            @all_events = []
-            if params[:timeline][:状態コード].empty? && params[:timeline][:ロールコード].empty?
-              @all_events = Event.all
-            else
-              if params[:timeline][:状態コード].empty? && !params[:timeline][:ロールコード].empty?
-                # rorumenba = Rorumaster.find(params[:timeline][:ロールコード]).rorumenba
-                rorumenba = Rorumenba.where(ロールコード: params[:timeline][:ロールコード])
-                @shains = Shainmaster.find(session[:user])
-                @all_event=Event.all
-
-                # rorumenba.each do |r|
-                #   e = r.shainmaster.events.all
-                #   if !e[0].nil?
-                #     @all_events.push(e)
-                #   end
-                # end
-              end
-              if params[:timeline][:ロールコード].empty? && !params[:timeline][:状態コード].empty?
-                @all_events=Event.where(状態コード: params[:timeline][:状態コード])
-                @shains = Shainmaster.where(タイムライン区分: false).reorder(:所属コード, :役職コード, :序列, :社員番号).all
-                # //render 'time_line_view'
-              end
-            end
-            # @shains = Shainmaster.where(タイムライン区分: false).reorder(:所属コード, :役職コード, :序列, :社員番号).all
-            # render 'time_line_view'
       end
     else
       vars = request.query_parameters
@@ -152,7 +124,13 @@ class EventsController < ApplicationController
     # else
     #   @event.build_joutaimaster
     # end
-    respond_with @event, location: events_url
+    case params[:commit]
+      when '登録する'
+        redirect_to time_line_view_events_url
+      when '登録する '
+        respond_with @event, location: events_url
+    end
+
   end
 
   def update
