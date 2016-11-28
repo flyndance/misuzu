@@ -7,7 +7,7 @@ class Rorumaster < ActiveRecord::Base
   validates :ロール名, length: {maximum: 40}
   validates :序列, length: {maximum: 10}
 	has_many :rorumenba, dependent: :destroy, foreign_key: :ロールコード
-  has_many :shainmasters, foreign_key: :デフォルトロール
+  has_many :shainmasters, foreign_key: :ロールコード
 
   def self.import(file)
 
