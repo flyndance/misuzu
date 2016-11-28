@@ -20,6 +20,7 @@
       <th>所属</th>
       <th>直間区分</th>
       <th>役職</th>
+      <th>デフォルトロール</th>
       <th>内線</th>
       <th>有給残数</th>
       <th></th>
@@ -38,6 +39,7 @@
       <% show_in = %w(直接 間接) %>
       <td><%= show_in[shain.直間区分.to_i - 1] %></td>
       <td><%= shain.yakushokumaster.役職名 unless shain.yakushokumaster.nil? %></td>
+      <td><%= shain.rorumaster.ロール名 unless shain.rorumaster.nil? %></td>
       <td><%= shain.内線電話番号 %></td>
       <td><%= shain.有給残数 %></td>
       <td><%= link_to '編集', edit_shainmaster_path(shain) if

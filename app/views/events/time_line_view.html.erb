@@ -29,26 +29,27 @@
         </div>
         <table class="pull-right">
           <td style="padding-bottom:15px;">
-            <bold style="line-height:40px;margin-right:15px;font-weight:bold;">ロール</bold>
+            <bold style="line-height:40px;margin-right:15px;font-weight:bold;">部署</bold>
           </td>
           <td>
-            <%= f.select :ロールコード, @role.map { |k| [k.ロール名, k.ロールコード] }, {include_blank: true}, {class: 'form-group'}%>
+            <!-- :selected => @roru.try(:ロールコード) -->
+            <%= f.select :ロールコード, @role.map { |k| [k.ロール名, k.ロールコード]}, {:selected => @roru.try(:ロールコード), include_blank: true},{class: 'form-group'}%>
           </td>
           <td style="padding-bottom:15px;">
             <bold style="line-height:40px;margin-right:15px;margin-left:15px;font-weight:bold;">状態</bold>
           </td>
           <td>
             <!-- <%= f.input :状態, label: false%> -->
-            <%= f.select :状態コード, @joutai.map { |k| [k.状態名, k.状態コード] }, {include_blank: true}, {class: 'form-group'}%>
+            <%= f.select :状態コード, @joutai.map { |k| [k.状態名, k.状態コード]}, {:prompt => "全て"}, {class: 'form-group'}%>
           </td>
-          <td><%= f.submit '検索', class: 'btn btn-primary', id:'kensaku', style: "margin-bottom: 15px;margin-left:15px;"%></td>
+          <td><button class="btn btn-primary" id="kensaku" type="button" style="margin-bottom: 15px;margin-left:15px">検索</button></td>
+    <!--       <td><%= f.submit '検索', class: 'btn btn-primary', id:'kensaku', style: "margin-bottom: 15px;margin-left:15px;"%></td> -->
         </table>
       </div>
-      <% if @all_events.any? %>
-        <div id="calendar-timeline"></div>
-      <%else%>
-        <div>イベントがありません</div>
-      <%end%>
+
+
+
+      <div id="calendar-timeline"></div>
     </div>
   </div>
 </div>

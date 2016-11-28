@@ -40,8 +40,10 @@ class EventsController < ApplicationController
   end
 
   def time_line_view
+
     @role = Rorumaster.all
     @joutai = Joutaimaster.all
+    @roru = Shainmaster.find(session[:user]).rorumaster
     if request.post?
       case params[:commit]
         when '一覧'
@@ -60,32 +62,58 @@ class EventsController < ApplicationController
           redirect_to setsubiyoyakus_url
         when '検索'
             # @all_events = Event.all.where(ロールコード: params[:ロールコード]);
+            byebug
             @all_events = []
             if params[:timeline][:状態コード].empty? && params[:timeline][:ロールコード].empty?
               @all_events = Event.all
             else
               if params[:timeline][:状態コード].empty? && !params[:timeline][:ロールコード].empty?
-                rorumenba = Rorumaster.find(params[:timeline][:ロールコード]).rorumenba
-                @all_event=rorumenba
-                rorumenba.each do |r|
-                  e = r.shainmaster.events.all
-                  if !e[0].nil?
-                    @all_events.push(e)
-                  end
-                end
+                # rorumenba = Rorumaster.find(params[:timeline][:ロールコード]).rorumenba
+                rorumenba = Rorumenba.where(ロールコード: params[:timeline][:ロールコード])
+                @shains = Shainmaster.find(session[:user])
+                @all_event=Event.all
+
+                # rorumenba.each do |r|
+                #   e = r.shainmaster.events.all
+                #   if !e[0].nil?
+                #     @all_events.push(e)
+                #   end
+                # end
               end
               if params[:timeline][:ロールコード].empty? && !params[:timeline][:状態コード].empty?
                 @all_events=Event.where(状態コード: params[:timeline][:状態コード])
                 @shains = Shainmaster.where(タイムライン区分: false).reorder(:所属コード, :役職コード, :序列, :社員番号).all
-                render 'time_line_view'
+                # //render 'time_line_view'
               end
             end
-            @shains = Shainmaster.where(タイムライン区分: false).reorder(:所属コード, :役職コード, :序列, :社員番号).all
-            render 'time_line_view'
+            # @shains = Shainmaster.where(タイムライン区分: false).reorder(:所属コード, :役職コード, :序列, :社員番号).all
+            # render 'time_line_view'
       end
     else
+      vars = request.query_parameters
       @all_events = Event.all
       @shains = Shainmaster.where(タイムライン区分: false).reorder(:所属コード, :役職コード, :序列, :社員番号).all
+      if vars['roru'].empty? && vars['joutai'].empty?
+        @all_events = Event.all
+        @shains = Shainmaster.where(タイムライン区分: false).reorder(:所属コード, :役職コード, :序列, :社員番号).all
+
+      else
+        if !vars['roru'].empty? && vars['joutai'].empty?
+          rorumenbas = Rorumenba.where(ロールコード: vars['roru'])
+          @shains = Shainmaster.where(id: (Rorumenba.where(ロールコード: vars['roru']).map(&:社員番号)))
+          @all_event=Event.all
+        end
+        if vars['roru'].empty? && !vars['joutai'].empty?
+          @all_events=Event.where(状態コード: vars['joutai'])
+          @shains = Shainmaster.where(タイムライン区分: false).reorder(:所属コード, :役職コード, :序列, :社員番号).all
+        end
+        if !vars['roru'].empty? && !vars['joutai'].empty?
+          @all_events=Event.where(状態コード: vars['joutai'])
+          rorumenbas = Rorumenba.where(ロールコード: vars['roru'])
+          @shains = Shainmaster.where(id: (Rorumenba.where(ロールコード: vars['roru']).map(&:社員番号)))
+        end
+      end
+
     end
     rescue
       @events = Shainmaster.take.events
@@ -236,6 +264,13 @@ class EventsController < ApplicationController
        kintai = Kintai.where(日付: params[:date_kintai],社員番号: session[:user]).first
 
        data = {kintai_hoshukeitai: kintai.try(:保守携帯回数)}
+       respond_to do |format|
+         format.json { render json: data}
+       end
+     when 'roru_getData'
+       @roru = Shainmaster.find(session[:user]).rorumaster
+
+       data = {roru: @roru.try(:ロールコード)}
        respond_to do |format|
          format.json { render json: data}
        end
