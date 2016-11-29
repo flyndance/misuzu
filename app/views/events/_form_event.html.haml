@@ -1,6 +1,10 @@
 = simple_form_for @event do |f|
   .col-md-4.col-md-offset-1
-    = f.input :社員番号, input_html: {style: 'width:100px'}
+    - if !request["shain_id"].nil?
+      = f.input :社員番号, input_html: {style: 'width:100px', value: request["shain_id"]}
+    - else
+      = f.input :社員番号, input_html: {style: 'width:100px'}
+    / = f.input :社員番号, input_html: {style: 'width:100px'}
     .row
       .col-md-4
         = f.input :状態コード, label: '状態', input_html: {style: 'width:50px'}, as: :search_field, hint:"#{@event.joutaimaster.try :状態名}", hint_html: {class: 'hint-joutai-refer'}

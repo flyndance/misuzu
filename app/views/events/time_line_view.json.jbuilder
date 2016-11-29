@@ -50,6 +50,7 @@ end
 json.shains @shains do |shain|
   json.extract! shain, :id
   json.shain shain.try(:氏名)
+  json.shainid shain.try(:id)
   # json.joutai shain.events.first.shozai.try(:所在名) if shain.events.first
   # event = shain.events.where("開始 < ? AND 終了 > ?",Time.current, Time.current).first
   joutai = ''
