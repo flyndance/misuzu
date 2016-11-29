@@ -164,6 +164,16 @@ $(document).ready(function() {
                             el.css('background-color', '#adadad');
                         }
 
+                    },
+                    {
+                        labelText: '',
+                        field: 'shinki',
+                        width: 10,
+                        render: function(resources, el) {
+                            el.html('<a href="/events/new?param=timeline&shain_id='+resources.shainid+'" style=""><span class="glyphicon glyphicon-edit" aria-hidden="true"></span></a>');
+                            // el.html('<a href="/events/new?shain_id='+resources.shainid+'"></a>');
+                        }
+
                     }
                 ]
                 ,resources: data.shains
@@ -179,6 +189,7 @@ $(document).ready(function() {
             $('col:nth-child(3)').css('width',20);
             $('col:nth-child(4)').css('width',20);
             $('col:nth-child(5)').css('width',20);
+            $('col:nth-child(6)').css('width',10);
             $('col:nth-child(2)').css('width',20);
             $('#calendar-timeline .fc-resource-area').css('width',"30%");
 
@@ -224,6 +235,7 @@ $(document).on("click", ".fc-next-button", function(){
         $('col:nth-child(3)').css('width',20);
         $('col:nth-child(4)').css('width',20);
         $('col:nth-child(5)').css('width',20);
+        $('col:nth-child(6)').css('width',10);
         $('col:nth-child(2)').css('width',20);
         $('#calendar-timeline .fc-resource-area').css('width',"30%");
     }else if(calDate > currentDate ){
@@ -235,9 +247,10 @@ $(document).on("click", ".fc-next-button", function(){
         $('col:nth-child(3)').css('width',0);
         $('col:nth-child(4)').css('width',0);
         $('col:nth-child(5)').css('width',0);
+        $('col:nth-child(6)').css('width',0);
         $('col:nth-child(2)').css('width',0);
 
-        $('#calendar-timeline .fc-resource-area').css('width',"13%");
+        $('#calendar-timeline .fc-resource-area').css('width',"12%");
     }
 
 
@@ -257,6 +270,7 @@ $(document).on("click", ".fc-prev-button", function(){
         $('col:nth-child(3)').css('width',20);
         $('col:nth-child(4)').css('width',20);
         $('col:nth-child(5)').css('width',20);
+        $('col:nth-child(6)').css('width',10);
         $('col:nth-child(2)').css('width',20);
         $('#calendar-timeline .fc-resource-area').css('width',"30%");
     }else if(calDate > currentDate ){
@@ -264,8 +278,9 @@ $(document).on("click", ".fc-prev-button", function(){
         $('col:nth-child(3)').css('width',0);
         $('col:nth-child(4)').css('width',0);
         $('col:nth-child(5)').css('width',0);
+        $('col:nth-child(6)').css('width',0);
         $('col:nth-child(2)').css('width',0);
-        $('#calendar-timeline .fc-resource-area').css('width',"13%");
+        $('#calendar-timeline .fc-resource-area').css('width',"12%");
     }
 
 });
