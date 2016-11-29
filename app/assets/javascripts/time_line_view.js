@@ -76,7 +76,16 @@ $(document).ready(function() {
                 defaultView: 'timelineDay',
                 events: data.events,
                 eventRender: function(event, element) {
-                  element.find('span.fc-title').html(data.events.title).html(element.find('span.fc-title').text());
+                    element.find('span.fc-title').html(data.events.title).html(element.find('span.fc-title').text());
+                    if(event.bashokubun != 1){
+                        var selectedDate = $('#calendar-timeline').fullCalendar('getDate');
+                        var calDate = moment(selectedDate).format();
+                        if(event.start.isBefore(calDate) && event.end.isAfter(calDate)){
+                            $('.fc-resource-area tr[data-resource-id="'+event.resourceId+'"] td:nth-child(2)').css('color','#adadad');
+                        }
+                    }
+
+
                 },
                 //events: '/events.json',
                 //header: {
