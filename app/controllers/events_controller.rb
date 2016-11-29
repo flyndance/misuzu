@@ -138,12 +138,18 @@ class EventsController < ApplicationController
         flash[:notice] = t 'app.flash.delete_success' if @event.destroy
         respond_with @event, location: events_url
 
-      when '登録する'
+      when '登録する '
         # set_fkey @event, event_params
         flash[:notice] = t 'app.flash.update_success' if @event.update event_params
         # joutai = Joutaimaster.find_by code: event_params[:状態コード]
         # joutai.update color: params['input-backgroud-color'], text_color: params['input-text-color']
         respond_with @event, location: events_url
+      when '登録する'
+        # set_fkey @event, event_params
+        flash[:notice] = t 'app.flash.update_success' if @event.update event_params
+        # joutai = Joutaimaster.find_by code: event_params[:状態コード]
+        # joutai.update color: params['input-backgroud-color'], text_color: params['input-text-color']
+        redirect_to time_line_view_events_url
     end
   end
 

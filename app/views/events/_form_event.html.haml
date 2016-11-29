@@ -31,7 +31,10 @@
         = f.button :submit, '登録する ', class: 'btn btn-primary', id: 'event'
 
     - if @event.計上 != '済' && mode == 'edit'
-      = f.button :submit, '登録する', class: 'btn btn-primary'
+      - if request["param"] == "timeline"
+        = f.button :submit, '登録する', class: 'btn btn-primary', id: 'timeline'
+      - else
+        = f.button :submit, '登録する ', class: 'btn btn-primary', id: 'event'
       = f.button :submit, '削除する', class: 'btn btn-primary'
 
 = render 'share/joutai_modal'
