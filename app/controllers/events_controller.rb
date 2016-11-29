@@ -134,10 +134,12 @@ class EventsController < ApplicationController
 
   def update
     case params[:commit]
-      when '削除する'
+      when '削除する '
         flash[:notice] = t 'app.flash.delete_success' if @event.destroy
         respond_with @event, location: events_url
-
+      when '削除する'
+        flash[:notice] = t 'app.flash.delete_success' if @event.destroy
+        redirect_to time_line_view_events_url
       when '登録する '
         # set_fkey @event, event_params
         flash[:notice] = t 'app.flash.update_success' if @event.update event_params
