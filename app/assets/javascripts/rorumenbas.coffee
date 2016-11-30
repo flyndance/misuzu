@@ -8,9 +8,9 @@ jQuery ->
       "sUrl": "../../assets/resource/dataTable_ja.txt"
     }
     "aoColumnDefs": [
-        { "bSortable": false, "aTargets": [ 5,6 ]},
+        { "bSortable": false, "aTargets": [ 4,5 ]},
         {
-            "targets": [5,6],
+            "targets": [4,5],
             "width": '7%'
         }
     ],
