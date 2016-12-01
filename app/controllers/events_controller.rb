@@ -67,21 +67,21 @@ class EventsController < ApplicationController
       @shains = Shainmaster.where(タイムライン区分: false).all
       if vars['roru'].empty? && vars['joutai'].empty?
         @all_events = Event.all
-        @shains = Shainmaster.joins(:rorumenbas).where(タイムライン区分: false).reorder("cast(ロールメンバ.ロール内序列 as integer) asc")
+        @shains = Shainmaster.joins(:rorumenbas).where(タイムライン区分: false).reorder("ロールメンバ.ロール内序列 asc,ロールメンバ.ロールコード asc")
       else
         if !vars['roru'].empty? && vars['joutai'].empty?
           rorumenbas = Rorumenba.where(ロールコード: vars['roru'])
-          @shains = Shainmaster.where(タイムライン区分: false).where(id: (Rorumenba.where(ロールコード: vars['roru']).map(&:社員番号))).joins(:rorumenbas).reorder("cast(ロールメンバ.ロール内序列 as integer) asc")
+          @shains = Shainmaster.where(タイムライン区分: false).joins(:rorumenbas).where(ロールメンバ: {ロールコード: vars['roru']}).reorder('ロールメンバ.ロールコード asc,ロールメンバ.ロール内序列 asc')
           @all_event=Event.all
         end
         if vars['roru'].empty? && !vars['joutai'].empty?
           @all_events=Event.where(状態コード: vars['joutai'])
-          @shains = Shainmaster.where(タイムライン区分: false).all.joins(:rorumenbas).reorder("cast(ロールメンバ.ロール内序列 as interger) asc")
+          @shains = Shainmaster.where(タイムライン区分: false).all.joins(:rorumenbas).reorder("ロールメンバ.ロール内序列 asc,ロールメンバ.ロールコード asc")
         end
         if !vars['roru'].empty? && !vars['joutai'].empty?
           @all_events=Event.where(状態コード: vars['joutai'])
           rorumenbas = Rorumenba.where(ロールコード: vars['roru'])
-          @shains = Shainmaster.where(タイムライン区分: false).where(id: (Rorumenba.where(ロールコード: vars['roru']).map(&:社員番号))).joins(:rorumenbas).reorder("cast(ロールメンバ.ロール内序列 as integer) asc")
+          @shains = Shainmaster.where(タイムライン区分: false).joins(:rorumenbas).where(ロールメンバ: {ロールコード: vars['roru']}).reorder('ロールメンバ.ロールコード asc,ロールメンバ.ロール内序列 asc')
         end
       end
 
