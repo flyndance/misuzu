@@ -3,13 +3,12 @@ class RorumastersController < ApplicationController
   load_and_authorize_resource except: :export_csv
 
   def new
-  	@rorumaster = Rorumaster.new
+    @rorumaster = Rorumaster.new
     respond_with(@rorumaster)
   end
 
   def index
-  	@rorumaster = Rorumaster.all
-
+    @rorumaster = Rorumaster.all
   end
 
   def show

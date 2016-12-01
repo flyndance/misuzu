@@ -8,10 +8,10 @@ jQuery ->
       "sUrl": "../../assets/resource/dataTable_ja.txt"
     }
     "aoColumnDefs": [
-        { "bSortable": false, "aTargets": [ 4,5 ]},
+        { "bSortable": false, "aTargets": [ 5,6 ]},
         {
-            "targets": [4,5],
-            "width": '7%'
+            "targets": [5,6],
+            "width": '5%'
         }
     ],
     "columnDefs": [ {
@@ -20,31 +20,47 @@ jQuery ->
     }]
   })
 
-  oShain_modal = $('#user_table').DataTable({
-    "pagingType": "full_numbers"
-    , "oLanguage": {
+  $('#rorumenba').click () ->
+     shainNo = []
+     selected_rows = shain_table.rows( { selected: true } ).data()
+     for row in selected_rows
+       shainNo.push(row[1])
+     $('#shain').val(shainNo.toString())
+
+  shain_table = $('.shain-table').DataTable({
+    "pagingType": "simple_numbers",
+    "oLanguage":{
       "sUrl": "../../assets/resource/dataTable_ja.txt"
-    }
+    },
+#    "aoColumnDefs": [
+#      { "bSortable": false, "aTargets": [0]},
+#      {
+#        "targets": [0],
+#        "width": '20%'
+#      }
+#    ],
+#    "columnDefs": [{
+#      "targets"  : 'no-sort',
+#      "orderable": false
+#    }],
+    columnDefs: [ {
+      orderable: false,
+      className: 'select-checkbox',
+      targets:   0
+    } ],
+    select: {
+#      style:    'os',
+      style:    'multi',
+#      selector: 'td:first-child'
+    },
+    dom: 'Bfrtip',
+    buttons: [
+#      'selected',
+#      'selectedSingle',
+      'selectAll',
+      'selectNone'
+#      'selectRows',
+#      'selectColumns',
+#      'selectCells'
+    ]
   })
-
-  $('#user_table tbody').on 'click', 'tr',  () ->
-    d = oShain_modal.row(this).data()
-    $('#rorumenba_社員番号').val(d[0])
-    $('#shain-refer').text(d[1])
-
-#    remove error if has
-    $('#rorumenba_社員番号').closest('.form-group').find('span.help-block').remove()
-    $('#rorumenba_社員番号').closest('.form-group').removeClass('has-error')
-
-    if $(this).hasClass('selected')
-      $(this).removeClass('selected')
-      $(this).removeClass('success')
-    else
-      oShain_modal.$('tr.selected').removeClass('selected')
-      oShain_modal.$('tr.success').removeClass('success')
-      $(this).addClass('selected')
-      $(this).addClass('success')
-
-  $(document).on 'click', '.refer-shain', (event) ->
-    $('#select_user_modal').modal('show')
-    event.preventDefault()
