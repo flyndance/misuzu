@@ -1,12 +1,22 @@
 = simple_form_for(@rorumenba) do |f|
-  .col-sm-3.col-sm-offset-2
-    = f.input :ロールコード, label:'ロールコード' do
-      = f.select :ロールコード, Rorumaster.all.map {|p| [ p.ロール名, p.ロールコード ] },{}, {include_blank: true, class: 'form-control'}
-    = f.input :社員番号, wrapper: :vertical_input_group do
-      = f.input_field :社員番号, class: 'form-control'
-      %span.input-group-addon.refer-shain
-        %span.glyphicon.glyphicon-search{'aria-hidden'=>"true"}
-    = f.input :氏名
-    = f.input :ロール内序列
-    = f.button :submit, class: 'btn btn-primary'
-= render 'share/shain_modal_refer'
+  .col-md-5.col-md-offset-1
+    .row
+      .col-md-6
+        = f.input :ロールコード, label:'ロールコード' do
+          = f.select :ロールコード, Rorumaster.all.map {|p| [ p.ロール名, p.ロールコード ] },{}, {include_blank: true, class: 'form-control'}
+    = f.button :submit, class: 'btn btn-primary', id: 'rorumenba'
+    = hidden_field_tag 'shain'
+  .col-md-5
+    %table#shain-table.shain-table.table.table-striped.table-bordered.table-hover{cellspacing:0, width: '100%'}
+      %thead
+        %tr
+          %th
+          %th 社員番号
+          %th 社員名
+
+      %tbody
+        - @shains.each do |shain|
+          %tr
+            %td
+            %td#selected_val= shain.社員番号 
+            %td= shain.氏名

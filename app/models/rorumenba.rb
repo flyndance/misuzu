@@ -1,7 +1,6 @@
 class Rorumenba < ActiveRecord::Base
 	self.table_name = :ロールメンバ
-	self.primary_key = :ロールコード
-	self.primary_key = :社員番号
+	self.primary_keys = :ロールコード, :社員番号
 
   validates :ロールコード,:社員番号, presence: true
   validates :ロール内序列, length: {maximum: 10}

@@ -10,6 +10,7 @@
   %thead
     %tr
       %th ロールコード
+      %th ロール
       %th 社員
       %th 氏名
       %th ロール内序列
@@ -18,9 +19,10 @@
   %tbody
     - @rorumenba.each do |rorumenba|
       %tr
+        %td= rorumenba.ロールコード
         %td= rorumenba.rorumaster.ロール名
+        %td= rorumenba.社員番号
         %td= rorumenba.shainmaster.氏名
-        %td= rorumenba.氏名
         %td= rorumenba.ロール内序列
         %td= link_to '編集', edit_rorumenba_path(rorumenba)
         - msg = t 'app.delete_confirm'

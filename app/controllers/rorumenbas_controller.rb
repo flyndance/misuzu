@@ -19,21 +19,27 @@ class RorumenbasController < ApplicationController
   end
 
   def edit
-    @shains = Shainmaster.all
+    @shainna = Shainmaster.find_by(社員番号: @rorumenba.社員番号).氏名
     respond_with(@rorumenba)
   end
 
   def create
-    @shains = Shainmaster.all
-    @rorumenba = Rorumenba.new(rorumenba_params)
-    @rorumenba.save
-    respond_with(@rorumenba)
+    arrShain = params[:shain].split(',')
+    byebug
+    arrShain.each do |shainNo|
+      @rorumenba = Rorumenba.find_by({社員番号: shainNo, ロールコード: rorumenba_params[:ロールコード]})
+      next if !@rorumenba.nil?
+      @shainna = Shainmaster.find_by(社員番号: shainNo)
+      byebug
+      @rorumenba = Rorumenba.new(rorumenba_params.merge({社員番号: shainNo,氏名:  @shainna.氏名}))
+      @rorumenba.save
+    end
+    respond_with(@rorumenba, location: rorumenbas_url)
   end
 
   def update
-    @shains = Shainmaster.all
-    @rorumenba.update(rorumenba_params)
-    respond_with(@rorumenba)
+    flash[:notice] = t "app.flash.update_success" if @rorumenba.update(rorumenba_params)
+    respond_with(@rorumenba, location: rorumenbas_url)
   end
 
   def destroy
