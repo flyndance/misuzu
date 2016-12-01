@@ -25,12 +25,10 @@ class RorumenbasController < ApplicationController
 
   def create
     arrShain = params[:shain].split(',')
-    byebug
     arrShain.each do |shainNo|
       @rorumenba = Rorumenba.find_by({社員番号: shainNo, ロールコード: rorumenba_params[:ロールコード]})
       next if !@rorumenba.nil?
       @shainna = Shainmaster.find_by(社員番号: shainNo)
-      byebug
       @rorumenba = Rorumenba.new(rorumenba_params.merge({社員番号: shainNo,氏名:  @shainna.氏名}))
       @rorumenba.save
     end
