@@ -3,7 +3,7 @@
 </div>
 <div class="col-md-4 col-md-offset-4">
 <div class="well">
-
+<%provide(:title, (t 'title.session'))%>
 <%= form_for :session, url: login_path, html:{class: 'form-horizontal'} do |f| %>
   <div class="form-group">
     <div class="field">
@@ -30,7 +30,7 @@
   </div>
 
 <% end %>
- 
+
  <script>//lock enter keypress at login
 $("form").bind("keypress", function (e) {
     if (e.keyCode == 13) {
@@ -39,6 +39,6 @@ $("form").bind("keypress", function (e) {
 });
 
 </script>
-   
+
   </div>
 </div>

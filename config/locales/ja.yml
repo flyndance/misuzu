@@ -226,3 +226,50 @@ ja:
       let_login: ログインしてください。
       logged_in: ログインしました。
   export: 輸出
+  title:
+    bashokubunmst: 場所区分一覧
+    bashomaster: 場所マスタ
+    bunrui: 分類一覧
+    dengonkaitou: 伝言回答マスタ
+    dengon: 伝言一覧
+    dengonyouken: 伝言用件マスタ
+    eki: 駅一覧
+    employer: MultiSelect
+    event: カレンダー
+    time_line_view: タイムライン
+    export_csv: データをエクスポート
+    jobmaster: JOBマスタ
+    joutaimaster: 状態マスタ
+    jpt_hokiday_mst: ジュピター休日
+    kairan: 回覧
+    shokairan: 送回覧
+    kaitou: 回答
+    kairanyoukenmst: 回覧用件マスタ
+    kaishamaster: 会社マスタ
+    kanri:
+      keihihead: 経費
+      kintai: 勤怠
+      main: 管理G メインメニュー
+    keihibodie: TRICOM
+    keihihead: 経費入力管理
+    kikanmst: 機関一覧
+    kintai: 勤怠
+    kouteimaster: 工程マスタ
+    layout: TRICOM
+    main: メインメニュー
+    rorumaster: ロールマスタ
+    rorumenba: ロールメンバ
+    session: ログイン
+    setsubi: 設備マスタ
+    setsubiyoyaku: 設備予約
+    shainmaster: 社員マスタ
+    share: TRICOM
+    shoninshamst: 承認者マスタ
+    shozai: 所在マスタ
+    shozokumaster: 所属マスタ
+    tsushinseigyou: 通信制御マスタ
+    user:
+      change_pass: パスワード変更
+      tantousha: 担当者マスタ
+    yakushokumaster: 役職テーブル
+    yuusen: 優先

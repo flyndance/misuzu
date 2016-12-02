@@ -5,6 +5,14 @@ module ApplicationHelper
     # link to change to <%= link_to "name link", current_url(:format => :csv)%>
     url_for :params => params.merge(new_params)
   end
+  def full_title(page_title = '')
+    base_title = "TRICOM"
+    if page_title.empty?
+      base_title
+    else
+      page_title
+    end
+  end
 
 end
 

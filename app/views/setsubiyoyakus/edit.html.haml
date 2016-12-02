@@ -12,7 +12,8 @@
 
 %ol.breadcrumb
   %li= link_to 'メニュー', main_path
-  %li= link_to '設備マスタ', setsubiyoyakus_path
+  %li= link_to '設備予約', setsubiyoyakus_path
   %li.active 編集
 
 = render 'form'
+= provide(:title, (t 'title.setsubiyoyaku'))
