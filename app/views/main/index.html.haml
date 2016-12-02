@@ -1,3 +1,4 @@
+= provide(:title, (t 'title.main'))
 .panel.panel-default
   .panel-heading
     %h3.panel-title メインメニュー
@@ -44,7 +45,7 @@
           %li.list-group-item= link_to 'ジュピター休日', jpt_holiday_msts_path
           %li.list-group-item= link_to '機関マスタ', kikanmsts_path
       .col-md-3
-        %ul.list-group   
+        %ul.list-group
           %li.list-group-item= link_to '駅マスタ', ekis_path
           %li.list-group-item= link_to '承認者マスタ', shoninshamsts_path
           %li.list-group-item= link_to '分類マスタ', bunruis_path

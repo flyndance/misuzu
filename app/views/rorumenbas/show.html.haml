@@ -14,7 +14,8 @@
 %p
   %b ロール内序列:
   = @rorumenba.ロール内序列
-  
+
 = link_to '編集', edit_rorumenba_path(@rorumenba)
 \|
 = link_to '戻る', rorumenbas_path
+= provide(:title, (t 'title.rorumenba'))
