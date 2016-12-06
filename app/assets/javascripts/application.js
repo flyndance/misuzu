@@ -37,7 +37,7 @@
 
 //= require custom
 
-
+//= require user
 
 //= require jquery.purr
 //= require best_in_place
@@ -88,3 +88,20 @@ function getUrlVars() {
     });
     return vars;
   }
+function readURL(input) {
+
+    if (input.files && input.files[0]) {
+        var reader = new FileReader();
+
+        reader.onload = function (e) {
+            $('#thumb').attr('src', e.target.result);
+        }
+
+        reader.readAsDataURL(input.files[0]);
+    }
+}
+$(document).ready(function() {
+    $("#user_avatar").change(function(){
+        readURL(this);
+    });
+});

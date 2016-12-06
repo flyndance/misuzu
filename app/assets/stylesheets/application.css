@@ -87,6 +87,25 @@
 .icon-left {
   text-align: left;
 }
+
 .menu {
   margin-bottom: 0px;
 }
+
+.radio{
+  margin-left: 50px;
+  display: inline-block !important;
+}
+/*.radio_buttons{
+  width: 100%;
+}*/
+/*.radio label{
+  display: block;
+  text-align: center;
+  margin: 0 0.2em;
+}
+*/
+/*.radio input[type="radio"]{
+  display: block;
+  margin: 0.5em auto;
+}*/
