@@ -50,12 +50,12 @@
             %a.dropdown-toggle{'href'=>"#", 'data-toggle'=>"dropdown", 'role'=>"button", 'aria-haspopup'=>"true", 'aria-expanded'=>"false"}
               %span.glyphicon.glyphicon-asterisk
               %span.caret
-            %ul.dropdown-menu
+            %ul.dropdown-menu.dropdown-sm
 
               - if current_user.admin? || current_user.supervisor?
                 %li= link_to ' データをエクスポート!', export_csv_index_path, :class => "glyphicon glyphicon-export icon-left"
               - if current_user.shainmaster.shozokumaster.所属コード == "3"
-                %li= link_to '管理G', kanris_root_path
+                %li= link_to ' 管理G', kanris_root_path, :class => "glyphicon glyphicon-list-alt icon-left"
         - else
           %li= link_to 'ログイン', login_path
 
