@@ -170,7 +170,7 @@ $(document).ready(function() {
                         field: 'shinki',
                         width: 10,
                         render: function(resources, el) {
-                            el.css('background-color', resources.background_color);
+
                             el.html('<a href="/events/new?param=timeline&shain_id='+resources.shainid+'" style=""><span class="glyphicon glyphicon-edit" aria-hidden="true"></span></a>');
                             // el.html('<a href="/events/new?shain_id='+resources.shainid+'"></a>');
                         }
