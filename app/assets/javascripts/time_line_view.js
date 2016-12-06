@@ -68,7 +68,7 @@ $(document).ready(function() {
                 aspectRatio: 1.5,
                 resourceAreaWidth: '30%',
                 slotLabelFormat: ['HH : mm'],
-                scrollTime: '06:00',
+                scrollTime: '00:00',
                 //slotDuration: moment.duration(0.5, 'hours'),
                 //minTime: '00:00:00',
                 //maxTime: '24:00:00',
@@ -170,6 +170,7 @@ $(document).ready(function() {
                         field: 'shinki',
                         width: 10,
                         render: function(resources, el) {
+                            el.css('background-color', resources.background_color);
                             el.html('<a href="/events/new?param=timeline&shain_id='+resources.shainid+'" style=""><span class="glyphicon glyphicon-edit" aria-hidden="true"></span></a>');
                             // el.html('<a href="/events/new?shain_id='+resources.shainid+'"></a>');
                         }
@@ -186,11 +187,11 @@ $(document).ready(function() {
             var currentDate = new Date();
             var date = currentDate.getFullYear()+"年"+(currentDate.getMonth()+1)+"月"+currentDate.getDate()+"日";
             $("#calendar-timeline .fc-left").replaceWith('<div class= "fc-left"><h2>'+date+'(今日)</h2></div>');
-            $('col:nth-child(3)').css('width',20);
-            $('col:nth-child(4)').css('width',20);
-            $('col:nth-child(5)').css('width',20);
-            $('col:nth-child(6)').css('width',10);
-            $('col:nth-child(2)').css('width',20);
+            $('.fc-resource-area col:nth-child(2),.fc-resource-area td:nth-child(2),.fc-resource-area th:nth-child(2)').show();
+            $('.fc-resource-area col:nth-child(3),.fc-resource-area td:nth-child(3),.fc-resource-area th:nth-child(3)').show();
+            $('.fc-resource-area col:nth-child(4),.fc-resource-area td:nth-child(4),.fc-resource-area th:nth-child(4)').show();
+            $('.fc-resource-area col:nth-child(5),.fc-resource-area td:nth-child(5),.fc-resource-area th:nth-child(5)').show();
+
             $('#calendar-timeline .fc-resource-area').css('width',"30%");
 
         });
@@ -232,26 +233,25 @@ $(document).on("click", ".fc-next-button", function(){
     var date = calDate.getFullYear()+"年"+(calDate.getMonth()+1)+"月"+calDate.getDate()+"日";
     if(calDate.getDate()==currentDate.getDate()&&calDate.getMonth()==currentDate.getMonth()&&calDate.getFullYear()==currentDate.getFullYear()){
         $("#calendar-timeline .fc-left").replaceWith('<div class= "fc-left"><h2>'+date+'(今日)</h2></div>');
-        $('col:nth-child(3)').css('width',20);
-        $('col:nth-child(4)').css('width',20);
-        $('col:nth-child(5)').css('width',20);
-        $('col:nth-child(6)').css('width',10);
-        $('col:nth-child(2)').css('width',20);
+        $('.fc-resource-area col:nth-child(2),.fc-resource-area td:nth-child(2),.fc-resource-area th:nth-child(2)').show();
+        $('.fc-resource-area col:nth-child(3),.fc-resource-area td:nth-child(3),.fc-resource-area th:nth-child(3)').show();
+        $('.fc-resource-area col:nth-child(4),.fc-resource-area td:nth-child(4),.fc-resource-area th:nth-child(4)').show();
+        $('.fc-resource-area col:nth-child(5),.fc-resource-area td:nth-child(5),.fc-resource-area th:nth-child(5)').show();
+
         $('#calendar-timeline .fc-resource-area').css('width',"30%");
     }else if(calDate > currentDate ){
         $("#calendar-timeline .fc-left").replaceWith('<div class= "fc-left"><h2>'+date+'(予定)</h2></div>');
-        // $('col:nth-child(3),th:nth-child(3)').hide();
-        // $('col:nth-child(4),th:nth-child(4)').hide();
-        // $('col:nth-child(5),th:nth-child(5)').hide();
-        // $('col:nth-child(6),th:nth-child(6)').hide();
-        $('col:nth-child(3)').css('width',0);
-        $('col:nth-child(4)').css('width',0);
-        $('col:nth-child(5)').css('width',0);
-        $('col:nth-child(6)').css('width',0);
-        $('col:nth-child(2)').css('width',0);
+        // $('.fc-resource-area col:nth-child(2)').css('width',0);
+        // $('.fc-resource-area col:nth-child(3)').css('width',0);
+        // $('.fc-resource-area col:nth-child(4)').css('width',0);
+        // $('.fc-resource-area col:nth-child(5)').css('width',0);
+        $('.fc-resource-area col:nth-child(2),.fc-resource-area td:nth-child(2),.fc-resource-area th:nth-child(2)').hide();
+        $('.fc-resource-area col:nth-child(3),.fc-resource-area td:nth-child(3),.fc-resource-area th:nth-child(3)').hide();
+        $('.fc-resource-area col:nth-child(4),.fc-resource-area td:nth-child(4),.fc-resource-area th:nth-child(4)').hide();
+        $('.fc-resource-area col:nth-child(5),.fc-resource-area td:nth-child(5),.fc-resource-area th:nth-child(5)').hide();
 
-        $('#calendar-timeline .fc-resource-area').css('width',"12%");
-    }
+        $('#calendar-timeline .fc-resource-area').css('width','14%');
+   }
 
 
 });
@@ -267,20 +267,19 @@ $(document).on("click", ".fc-prev-button", function(){
     var date = calDate.getFullYear()+"年"+(calDate.getMonth()+1)+"月"+calDate.getDate()+"日";
     if(calDate.getDate()==currentDate.getDate()&&calDate.getMonth()==currentDate.getMonth()&&calDate.getFullYear()==currentDate.getFullYear()){
         $("#calendar-timeline .fc-left").replaceWith('<div class= "fc-left"><h2>'+date+'(今日)</h2></div>');
-        $('col:nth-child(3)').css('width',20);
-        $('col:nth-child(4)').css('width',20);
-        $('col:nth-child(5)').css('width',20);
-        $('col:nth-child(6)').css('width',10);
-        $('col:nth-child(2)').css('width',20);
+        $('.fc-resource-area col:nth-child(2),.fc-resource-area td:nth-child(2),.fc-resource-area th:nth-child(2)').show();
+        $('.fc-resource-area col:nth-child(3),.fc-resource-area td:nth-child(3),.fc-resource-area th:nth-child(3)').show();
+        $('.fc-resource-area col:nth-child(4),.fc-resource-area td:nth-child(4),.fc-resource-area th:nth-child(4)').show();
+        $('.fc-resource-area col:nth-child(5),.fc-resource-area td:nth-child(5),.fc-resource-area th:nth-child(5)').show();
+
         $('#calendar-timeline .fc-resource-area').css('width',"30%");
     }else if(calDate > currentDate ){
         $("#calendar-timeline .fc-left").replaceWith('<div class= "fc-left"><h2>'+date+'(予定)</h2></div>');
-        $('col:nth-child(3)').css('width',0);
-        $('col:nth-child(4)').css('width',0);
-        $('col:nth-child(5)').css('width',0);
-        $('col:nth-child(6)').css('width',0);
-        $('col:nth-child(2)').css('width',0);
-        $('#calendar-timeline .fc-resource-area').css('width',"12%");
+        $('.fc-resource-area col:nth-child(2),.fc-resource-area td:nth-child(2),.fc-resource-area th:nth-child(2)').hide();
+        $('.fc-resource-area col:nth-child(3),.fc-resource-area td:nth-child(3),.fc-resource-area th:nth-child(3)').hide();
+        $('.fc-resource-area col:nth-child(4),.fc-resource-area td:nth-child(4),.fc-resource-area th:nth-child(4)').hide();
+        $('.fc-resource-area col:nth-child(5),.fc-resource-area td:nth-child(5),.fc-resource-area th:nth-child(5)').hide();
+        $('#calendar-timeline .fc-resource-area').css('width',"14%");
     }
 
 });
