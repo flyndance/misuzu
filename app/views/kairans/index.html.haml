@@ -13,8 +13,8 @@
 
     %thead
       %tr
-        %th 日時
         %th 発行者
+        %th 日時
         %th 要件
         %th 件名
         %th 内容
@@ -27,8 +27,8 @@
     %tbody
       - @kairanShoshais.each do |kairanshosai|
         %tr
+          %td{:style => "background-color:#fff966"}= kairanshosai.kairan.try :氏名
           %td= kairanshosai.開始
-          %td= kairanshosai.kairan.try :氏名
           %td{:style => "background-color: "+kairanshosai.kairan.kairanyokenmst.yuusen.try(:色).to_s+"; color: Black"}= kairanshosai.kairan.kairanyokenmst.try :名称 if kairanshosai.kairan
           %td= kairanshosai.件名
           %td.breakAll= kairanshosai.内容
