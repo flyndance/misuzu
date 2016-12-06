@@ -8,6 +8,9 @@
             %span メニュー
             %span.caret
           %ul.dropdown-menu
+            %li= link_to 'カレンダー', events_path
+            %li= link_to 'タイムライン', time_line_view_events_path
+            %legend.menu
             %li= link_to '勤務', kintais_url
             %li= link_to '経費', keihiheads_url
             %li= link_to '伝言', dengons_url
@@ -35,6 +38,7 @@
                 %li= image_tag image_path, size: "30x30"
               %li= link_to current_user.try(:担当者名称).to_s, edit_user_path(current_user)
               %li.text-gray パスワード更新日：#{current_user.updated_at.to_date}
+              %legend.menu
               %li= link_to ' プロファイル変更', edit_user_path(current_user), :class => "glyphicon glyphicon-edit icon-left"
               %li= link_to " ログアウト", logout_path, method: "delete", :class => "glyphicon glyphicon-log-out icon-left"
 
