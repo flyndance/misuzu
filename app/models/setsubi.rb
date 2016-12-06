@@ -2,7 +2,7 @@ class Setsubi < ActiveRecord::Base
 	self.table_name = :設備マスタ
  	self.primary_key = :設備コード
   validates :設備コード, :設備名, presence: true
-
+  validates :設備コード, uniqueness: true
   has_many :setsubiyoyaku, dependent: :destroy, foreign_key: :設備コード
 
  	def self.import(file)transaction
