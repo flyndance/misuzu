@@ -66,7 +66,6 @@
 }
 .navbar {
   background-color: rgb(59, 47, 99);
-  background-color: rgb(59, 47, 99);
   background-image: radial-gradient(circle at 50% 0%, rgba(84, 90, 182, 0.6) 0%, transparent 75%), radial-gradient(circle at 100% 0%, rgb(121, 74, 162) 0%, transparent 57%);
   background-repeat: no-repeat;
   background-size: 100% 1000px;

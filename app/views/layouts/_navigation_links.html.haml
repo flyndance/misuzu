@@ -50,7 +50,7 @@
             %a.dropdown-toggle{'href'=>"#", 'data-toggle'=>"dropdown", 'role'=>"button", 'aria-haspopup'=>"true", 'aria-expanded'=>"false"}
               %span.glyphicon.glyphicon-asterisk
               %span.caret
-            %ul.dropdown-menu.dropdown-sm
+            %ul.dropdown-menu
 
               - if current_user.admin? || current_user.supervisor?
                 %li= link_to ' データをエクスポート!', export_csv_index_path, :class => "glyphicon glyphicon-export icon-left"
