@@ -37,7 +37,7 @@
 
 //= require custom
 
-//= require user
+// require user
 
 //= require jquery.purr
 //= require best_in_place
