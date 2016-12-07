@@ -137,6 +137,18 @@ jQuery ->
 
   $(document).ready () ->
 #    fill_time()
+ 
+  $('.kintai-item').on 'keydown', '.best_in_place', (e) ->
+    keyCode = e.keyCode || e.which
+    if keyCode == 9
+      e.preventDefault()
+      $(this).parent().next('.kintai-item').trigger('click')
+      if $(this).parent().next('.kintai-item').length == 0
+        $(this).parent().parent().next().find('.kintai-item').first().trigger('click')
+
+  $('.kintai-item').on('change',() ->
+      $(this).parent().next().find('.kintai-item').first().trigger('click')
+      )
 
   $('#kintai_勤務タイプ').on('change',() ->
     fill_time2()
