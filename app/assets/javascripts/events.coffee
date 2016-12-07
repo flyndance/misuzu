@@ -80,7 +80,7 @@ jQuery ->
 
   $('#kaisha-table-modal tbody').on( 'click', 'tr',  () ->
     d = oKaisha_modal.row(this).data()
-    $('#bashomaster_会社コード').val(d[0])
+    $('#mybashomaster_会社コード').val(d[0])
 
     if $(this).hasClass('selected')
       $(this).removeClass('selected')
@@ -109,7 +109,7 @@ jQuery ->
     element2 = $('.search-group').find('#event_場所コード')
     element3 = $('.search-group').find('#event_JOB')
     element4 = $('.search-group').find('#event_工程コード')
-    element5 = $('.search-group').find('#bashomaster_会社コード')
+    element5 = $('.search-group').find('#mybashomaster_会社コード')
 
     if $(this).prev().is(element1)
       $('#joutai_search_modal').modal('show')
@@ -130,14 +130,18 @@ jQuery ->
   $('.search-plus').click( () ->
     $('#basho-new-modal').modal('show')
 
-    element = $('.search-group').find('#bashomaster_会社コード')
+    element = $('.search-group').find('#mybashomaster_会社コード')
     if $(this).prev().prev().is(element)
       $('#kaisha-new-modal').modal('show')
   )
 
+  $('.search-history').click( () ->
+    $('#mybasho_search_modal').modal('show')
+  )
+
   $('#basho-new-ok').click( () ->
-    basho_code = $('#bashomaster_場所コード').val()
+    basho_code = $('#mybashomaster_場所コード').val()
     if basho_code
       $('#event_場所コード').val(basho_code)
-      $('.hint-basho-refer').text($('#bashomaster_場所名').val())
+      $('.hint-basho-refer').text($('#mybashomaster_場所名').val())
 )

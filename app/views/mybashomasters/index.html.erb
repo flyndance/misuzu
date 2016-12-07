@@ -32,7 +32,7 @@
         <td><%= mybasho.SUB %></td>
         <td><%= mybasho.bashokubunmst.場所区分名 unless mybasho.kaishamaster.nil?%></td>
         <td><%= mybasho.kaishamaster.会社名 unless mybasho.kaishamaster.nil?%></td>
-        <td><%= mybasho.更新日 %></td>
+        <td><%= mybasho.updated_at %></td>
         <td><%= link_to '編集', edit_mybashomaster_path(mybasho) %></td>
         <td><%= link_to '削除', mybasho, method: :delete, data: { confirm: '削除で宜しですか。' } %></td>
 
