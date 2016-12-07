@@ -7,7 +7,7 @@ class MybashomastersController < ApplicationController
   respond_to :js
 
   def index
-    @mybashomasters = Mybashomaster.all
+    @mybashomasters = Mybashomaster.all.order("updated_at desc")
   end
 
 

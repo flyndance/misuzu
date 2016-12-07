@@ -319,6 +319,35 @@ $(function () {
         $('#after_div').show();
     });
 
+    $('#mybasho_destroy').click(function (){
+        var mybasho_id = oMybashoTable.row('tr.selected').data();
+        $.ajax({
+            url: '/events/ajax',
+            data: {id: 'mybasho_削除する',mybasho_id: mybasho_id[1]},
+            type: "POST",
+
+            success: function(data) {
+               if(data.destroy_success != null){
+                    console.log("getAjax destroy_success:"+ data.destroy_success);
+                    $('#mybasho_table').find('tr.selected').remove();
+                }
+                else{
+
+                    console.log("getAjax destroy_success:"+ data.destroy_success);
+                }
+            },
+            failure: function() {
+                console.log("mybasho_削除する keydown Unsuccessful");
+            }
+        });
+        $('#event_場所コード').val('');
+        //$('#basho_name').text(d[1]);
+        $('.hint-basho-refer').text('');
+
+        // $('#mybasho_search_modal').modal('hide');
+        // $('#mybasho_search_modal').modal('show');
+    });
+
     //$('#開始').click(function () {
     //    $('#event_開始').data("DateTimePicker").toggle();
     //});
@@ -495,6 +524,13 @@ $(function(){
         }
     });
 
+    oMybashoTable = $('#mybasho_table').DataTable({
+        "pagingType": "simple_numbers"
+        ,"oLanguage":{
+            "sUrl": "../../assets/resource/dataTable_ja.txt"
+        }
+    });
+
     oJoutaiTable = $('#joutai_table').DataTable({
         "pagingType": "simple_numbers"
         ,"oLanguage":{
@@ -592,6 +628,27 @@ $(function(){
             $(this).addClass('success');
         }
     } );
+
+    $('#mybasho_table tbody').on( 'click', 'tr', function () {
+
+        var d = oMybashoTable.row(this).data();
+        $('#event_場所コード').val(d[1]);
+        //$('#basho_name').text(d[1]);
+        $('.hint-basho-refer').text(d[2]);
+        $('#event_場所コード').closest('.form-group').find('span.help-block').remove()
+        $('#event_場所コード').closest('.form-group').removeClass('has-error')
+        if ( $(this).hasClass('selected') ) {
+            $(this).removeClass('selected');
+            $(this).removeClass('success');
+        }
+        else {
+            oMybashoTable.$('tr.selected').removeClass('selected');
+            oMybashoTable.$('tr.success').removeClass('success');
+            $(this).addClass('selected');
+            $(this).addClass('success');
+        }
+    } );
+
     // var s = document.getElementById('event_状態コード').value;
     // if (s != '11'){
     //     $('.event_有無').hide();

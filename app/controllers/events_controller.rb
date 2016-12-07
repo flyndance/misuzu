@@ -105,7 +105,19 @@ class EventsController < ApplicationController
 
   def create_basho
     @basho = Bashomaster.new(basho_params)
-    @basho.save
+    @mybasho = Mybashomaster.new(mybashomaster_params)
+    if @basho.save == false
+      Bashomaster.find(basho_params[:場所コード]).update basho_params
+    end
+
+    if @mybasho.save == false
+      Mybashomaster.find(mybashomaster_params[:場所コード]).update mybashomaster_params
+    end
+
+    # @mybasho.save
+   # @basho.save
+    # @mybasho = Mybashomaster.new(mybashomaster_params)
+    # @basho.save
   end
 
   def create_kaisha
@@ -259,6 +271,15 @@ class EventsController < ApplicationController
        respond_to do |format|
          format.json { render json: data}
        end
+     when 'mybasho_削除する'
+       @mybasho = Mybashomaster.where(場所コード: params[:mybasho_id]).first
+       Mybashomaster.find(@mybasho.id).destroy
+       @mybashos = Mybashomaster.all
+       data = {destroy_success: @mybashos}
+       respond_to do |format|
+         format.json { render json: data}
+         # format.js { render 'delete'}
+       end
        # byebug
    end
   end
@@ -282,12 +303,20 @@ private
     @jobs = Jobmaster.all
     @shozais = Shozai.all
     @bashos = Bashomaster.all
+
     @joutais = Joutaimaster.web_use.all
     # @kouteis = User.find(session[:user]).shainmaster.shozokumaster.kouteimasters
     @kouteis = Shainmaster.find(session[:selected_shain]).shozokumaster.kouteimasters
     @basho = Bashomaster.new
+    @mybasho = Mybashomaster.new
     @kaisha = Kaishamaster.new
     @kaishamasters = Kaishamaster.all
+    vars = request.query_parameters
+    if vars['shain_id'].nil?
+      @mybashos = Mybashomaster.where(社員番号: session[:selected_shain]).all.order("updated_at desc")
+    else
+      @mybashos = Mybashomaster.where(社員番号: vars['shain_id']).all.order("updated_at desc")
+    end
   end
 
 # Never trust parameters from the scary internet, only allow the white list through.
@@ -297,10 +326,14 @@ private
   end
 
   def basho_params
-    params.require(:bashomaster).permit(:場所コード, :場所名, :場所名カナ, :SUB, :場所区分, :会社コード)
+    params.require(:mybashomaster).permit(:場所コード, :場所名, :場所名カナ, :SUB, :場所区分, :会社コード)
   end
 
   def kaisha_params
     params.require(:kaishamaster).permit(:会社コード, :会社名, :備考)
+  end
+
+  def mybashomaster_params
+    params.require(:mybashomaster).permit(:社員番号, :場所コード, :場所名, :場所名カナ, :SUB, :場所区分,:会社コード, :更新日)
   end
 end
