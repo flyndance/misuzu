@@ -97,6 +97,10 @@ Jpt::Application.routes.draw do
     collection {post :ajax, :import}
     collection {get :export_csv}
   end
+  resources :mybashomasters do
+    collection {post :ajax, :import}
+    collection {get :export_csv}
+  end
 
   resources :shainmasters do
     collection {post :ajax, :import}

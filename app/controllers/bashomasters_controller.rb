@@ -12,7 +12,6 @@ class BashomastersController < ApplicationController
 
 
   def show
-
   end
 
   def new
