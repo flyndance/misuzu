@@ -96,6 +96,16 @@
   margin-left: 50px;
   display: inline-block !important;
 }
+
+.user-id{
+  width: 100%;
+  color: #555555;
+  height: 34px;
+  border: solid 1px #ccc;
+  border-radius: 5px;
+  padding: 9px;
+
+}
 /*.radio_buttons{
   width: 100%;
 }*/
