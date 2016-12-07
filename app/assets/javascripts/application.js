@@ -88,6 +88,8 @@ function getUrlVars() {
     });
     return vars;
   }
+
+//display thumb preview of avatar in Edit User
 function readURL(input) {
 
     if (input.files && input.files[0]) {
