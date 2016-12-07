@@ -6,9 +6,14 @@
     = f.password_field :password
     = f.label :password_confirmation, "再パスワード (4文字以上)"
     = f.password_field :password_confirmation
-    = f.label :avatar, "イメージ"
-    = f.file_field :avatar
-    = f.label :email, "メイル"
+    = f.label :avatar, "イメージ" 
+    %table
+      %tr
+        %td
+          %img{:id => "thumb",:width => "100", :height => "100"}
+        %td
+          = f.file_field :avatar
+    = f.label :email, "メール"
     = f.email_field :email
     - if current_user.admin? || current_user.supervisor?
       = f.input :admin, as: :boolean
