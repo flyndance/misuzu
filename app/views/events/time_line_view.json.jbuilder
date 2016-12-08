@@ -40,7 +40,7 @@ json.events @all_events do |event|
   # json.start '2016-06-03 07:00'
   json.end event.try(:end_time)
   # json.end '2016-06-03 09:00'
-  json.url edit_event_url(event, format: :html,:param => "timeline")
+  json.url edit_event_url(event, format: :html,:param => "timeline", :shain_id => event.shainmaster.id)
   json.resourceId event.shainmaster.id if event.shainmaster
   json.color event.joutaimaster.try(:色) if event.joutaimaster
   json.textColor event.joutaimaster.try(:text_color)  if event.joutaimaster

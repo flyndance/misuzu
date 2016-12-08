@@ -27,7 +27,7 @@
         <td><%= basho.場所名 %></td>
         <td><%= basho.場所名カナ %></td>
         <td><%= basho.SUB %></td>
-        <td><%= basho.bashokubunmst.場所区分名 unless basho.kaishamaster.nil?%></td>
+        <td><%= basho.bashokubunmst.場所区分名 unless basho.bashokubunmst.nil?%></td>
         <td><%= basho.kaishamaster.会社名 unless basho.kaishamaster.nil?%></td>
         <td><%= link_to '編集', edit_bashomaster_path(basho) %></td>
         <td><%= link_to '削除', basho, method: :delete, data: { confirm: '削除で宜しですか。' } %></td>

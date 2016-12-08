@@ -321,9 +321,10 @@ $(function () {
 
     $('#mybasho_destroy').click(function (){
         var mybasho_id = oMybashoTable.row('tr.selected').data();
+        var shain = $('#event_社員番号').val();
         $.ajax({
             url: '/events/ajax',
-            data: {id: 'mybasho_削除する',mybasho_id: mybasho_id[1]},
+            data: {id: 'mybasho_削除する',mybasho_id: mybasho_id[1],shain: shain},
             type: "POST",
 
             success: function(data) {
@@ -348,6 +349,29 @@ $(function () {
         // $('#mybasho_search_modal').modal('show');
     });
 
+    $('#koutei_sentaku_ok_mybasho').click(function(){
+        var mybasho_id = oBashoTable.row('tr.selected').data();
+        var shain = $('#event_社員番号').val();
+        $.ajax({
+            url: '/events/ajax',
+            data: {id: 'basho_selected',mybasho_id: mybasho_id[0],shain: shain},
+            type: "POST",
+
+            success: function(data) {
+               if(data.mybasho_id != null){
+                    console.log("getAjax mybasho_id:"+ data.mybasho_id);
+
+                }
+                else{
+
+                    console.log("getAjax mybasho_id:"+ data.mybasho_id);
+                }
+            },
+            failure: function() {
+                console.log("basho_selected keydown Unsuccessful");
+            }
+        });
+    });
     //$('#開始').click(function () {
     //    $('#event_開始').data("DateTimePicker").toggle();
     //});
