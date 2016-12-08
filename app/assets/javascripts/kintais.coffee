@@ -137,10 +137,10 @@ jQuery ->
 
   $(document).ready () ->
 #    fill_time()
- 
+
   $('.kintai-item').on 'keydown', '.best_in_place', (e) ->
     keyCode = e.keyCode || e.which
-    if keyCode == 9 || keyCode == 32
+    if keyCode == 9 || keyCode == 13
       e.preventDefault()
       $(this).parent().next('.kintai-item').trigger('click')
       if $(this).parent().next('.kintai-item').length == 0
