@@ -111,7 +111,7 @@ class EventsController < ApplicationController
     end
 
     if @mybasho.save == false
-      Mybashomaster.find(mybashomaster_params[:場所コード]).update mybashomaster_params
+      Mybashomaster.where(社員番号: mybashomaster_params[:社員番号], 場所コード: mybashomaster_params[:場所コード]).first.update mybashomaster_params
     end
 
     # @mybasho.save
@@ -272,10 +272,30 @@ class EventsController < ApplicationController
          format.json { render json: data}
        end
      when 'mybasho_削除する'
-       @mybasho = Mybashomaster.where(場所コード: params[:mybasho_id]).first
-       Mybashomaster.find(@mybasho.id).destroy
-       @mybashos = Mybashomaster.all
-       data = {destroy_success: @mybashos}
+       mybasho = Mybashomaster.where(社員番号: params[:shain],場所コード: params[:mybasho_id]).first
+       if !mybasho.nil?
+         mybasho.destroy
+       end
+
+       data = {destroy_success: "success"}
+       respond_to do |format|
+         format.json { render json: data}
+         # format.js { render 'delete'}
+       end
+     when 'basho_selected'
+
+        mybasho = Mybashomaster.where(社員番号: params[:shain],場所コード: params[:mybasho_id]).first
+        if mybasho.nil?
+          basho = Bashomaster.find(params[:mybasho_id])
+          mybasho = Mybashomaster.new(社員番号: params[:shain],場所コード: params[:mybasho_id],
+            場所名: basho.try(:場所名),場所名カナ: basho.try(:場所名カナ), SUB: basho.try(:SUB),
+            場所区分: basho.try(:場所区分),会社コード: basho.try(:会社コード))
+          mybasho.save
+        else
+          mybasho.update(updated_at: Time.now)
+        end
+
+       data = {destroy_success: mybasho.id}
        respond_to do |format|
          format.json { render json: data}
          # format.js { render 'delete'}

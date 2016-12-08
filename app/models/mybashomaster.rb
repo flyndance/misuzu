@@ -1,9 +1,9 @@
 class Mybashomaster < ActiveRecord::Base
   self.table_name = :MY場所マスタ
-  self.primary_key = :場所コード
+  self.primary_key = :場所コード,:社員番号
 
   validates :場所コード, :場所名, :社員番号, presence: true
-  validates :場所コード, uniqueness: true
+  validates :場所コード, uniqueness: {scope: :社員番号}
   validates :会社コード, presence: true, if: :basho_kubun?
   # validates :会社コード, inclusion: {in: Kaishamaster.pluck(:会社コード)}, allow_blank: true
 
@@ -14,8 +14,8 @@ class Mybashomaster < ActiveRecord::Base
   belongs_to :shainmaster, foreign_key: :社員番号
   delegate :name, to: :kaishamaster, prefix: :kaisha, allow_nil: true
 
-  alias_attribute :id, :場所コード
-  alias_attribute :name, :場所名
+  # alias_attribute :id, :場所コード
+  # alias_attribute :name, :場所名
 
   def basho_kubun?
     場所区分 == '2'

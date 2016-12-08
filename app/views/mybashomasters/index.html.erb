@@ -30,7 +30,7 @@
         <td><%= mybasho.場所名 %></td>
         <td><%= mybasho.場所名カナ %></td>
         <td><%= mybasho.SUB %></td>
-        <td><%= mybasho.bashokubunmst.場所区分名 unless mybasho.kaishamaster.nil?%></td>
+        <td><%= mybasho.bashokubunmst.場所区分名 unless mybasho.bashokubunmst.nil?%></td>
         <td><%= mybasho.kaishamaster.会社名 unless mybasho.kaishamaster.nil?%></td>
         <td><%= mybasho.updated_at %></td>
         <td><%= link_to '編集', edit_mybashomaster_path(mybasho) %></td>
