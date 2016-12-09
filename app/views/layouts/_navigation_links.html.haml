@@ -60,7 +60,7 @@
                 %li= link_to ' データをエクスポート!', export_csv_index_path, :class => "glyphicon glyphicon-export icon-left"
               - if current_user.shainmaster.shozokumaster.所属コード == "3"
                 %li= link_to ' 管理G', kanris_root_path, :class => "glyphicon glyphicon-list-alt icon-left"
-              %li= link_to ' Setting', settings_path, :class => "glyphicon glyphicon-asterisk"
+              %li= link_to ' 設定', setting_settings_path, :class => "glyphicon glyphicon-asterisk"
         - else
           %li= link_to 'ログイン', login_path
 
