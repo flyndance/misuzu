@@ -77,3 +77,8 @@ json.shains @shains do |shain|
 
   # json.eventColor shain.events.first.joutaimaster.色 if shain.events.first
 end
+
+json.setting @setting.try(:scrolltime) if @setting
+json.setting '06:00' if !@setting
+
+

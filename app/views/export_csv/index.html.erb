@@ -191,6 +191,12 @@
         export_csv_rorumenbas_path(format: :csv) %>
       </td>
     </tr>
+    <tr>
+      <td><%= @index+=1 %></td>
+      <td><%= link_to "Setting",
+        export_csv_settings_path(format: :csv) %>
+      </td>
+    </tr>
 
   </tbody>
 </table>
