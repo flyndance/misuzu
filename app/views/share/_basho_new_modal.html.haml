@@ -10,7 +10,7 @@
             = f.input :社員番号, as: :hidden, input_html: {style: 'width:100px', value: request["shain_id"]}
           - else
             = f.input :社員番号,as: :hidden, input_html: {style: 'width:100px', value: session[:selected_shain]}
-          = f.input :場所コード
+          = f.input :場所コード,hint:" ", hint_html: {class: 'hint-mybasho-refer',style: 'color:red'}
           = f.input :場所名
           = f.input :場所名カナ
           = f.input :SUB

@@ -106,13 +106,19 @@ class EventsController < ApplicationController
   def create_basho
     @basho = Bashomaster.new(basho_params)
     @mybasho = Mybashomaster.new(mybashomaster_params)
-    if @basho.save == false
-      Bashomaster.find(basho_params[:場所コード]).update basho_params
+    if @basho.save == true
+      @mybasho.save
+    else
+      respond_to do |format|
+        format.js { render 'create_basho_erro'}
+         # format.js { render 'delete'}
+      end
+
     end
 
-    if @mybasho.save == false
-      Mybashomaster.where(社員番号: mybashomaster_params[:社員番号], 場所コード: mybashomaster_params[:場所コード]).first.update mybashomaster_params
-    end
+    # if @mybasho.save == false
+    #   #Mybashomaster.where(社員番号: mybashomaster_params[:社員番号], 場所コード: mybashomaster_params[:場所コード]).first.update mybashomaster_params
+    # end
 
     # @mybasho.save
    # @basho.save
