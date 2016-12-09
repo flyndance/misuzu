@@ -44,6 +44,7 @@ class EventsController < ApplicationController
     @role = Rorumaster.all
     @joutai = Joutaimaster.all
     @roru = Shainmaster.find(session[:user]).rorumaster
+    @setting = Setting.where(社員番号: session[:user]).first
     if request.post?
       case params[:commit]
         when '一覧'

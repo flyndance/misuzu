@@ -59,7 +59,7 @@ $(document).ready(function() {
                     start: '09:00:00', // a start time (09am in this example)
                     end: '18:00:00', // an end time (6pm in this example)
 
-                    dow: [1, 2, 3, 4, 5]
+                    dow: [0, 1, 2, 3, 4, 5, 6]
                     // days of week. an array of zero-based day of week integers (0=Sunday)
                     // (Monday-Freeday in this example)
                 },
@@ -68,7 +68,7 @@ $(document).ready(function() {
                 aspectRatio: 1.5,
                 resourceAreaWidth: '30%',
                 slotLabelFormat: ['HH : mm'],
-                scrollTime: '00:00',
+                scrollTime: data.setting,
                 //slotDuration: moment.duration(0.5, 'hours'),
                 //minTime: '00:00:00',
                 //maxTime: '24:00:00',
@@ -81,7 +81,7 @@ $(document).ready(function() {
                         var selectedDate = $('#calendar-timeline').fullCalendar('getDate');
                         var calDate = moment(selectedDate).format();
                         if(event.start.isBefore(calDate) && event.end.isAfter(calDate)){
-                            $('.fc-resource-area tr[data-resource-id="'+event.resourceId+'"] td:nth-child(2)').css('color','#adadad');
+                            $('.fc-resource-area tr[data-resource-id="'+event.resourceId+'"] td:nth-child(2)').css('color','#e6e6fa');
                         }
                     }
 
