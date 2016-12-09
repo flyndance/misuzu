@@ -13,7 +13,7 @@ Jpt::Application.routes.draw do
   end
   resources :settings do
     collection {post :import}
-    collection {get :export_csv}
+    collection {get :export_csv, :setting}
   end
   get 'kanris/index'
 
