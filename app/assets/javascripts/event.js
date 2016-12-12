@@ -330,7 +330,10 @@ $(function () {
             success: function(data) {
                if(data.destroy_success != null){
                     console.log("getAjax destroy_success:"+ data.destroy_success);
-                    $('#mybasho_table').find('tr.selected').remove();
+                    // $('#mybasho_table').find('tr.selected').remove();
+                    // $("#mybasho_table").dataTable().fnDraw();
+                    $("#mybasho_table").dataTable().fnDeleteRow($('#mybasho_table').find('tr.selected').remove());
+                    $("#mybasho_table").dataTable().fnDraw();
                 }
                 else{
 
