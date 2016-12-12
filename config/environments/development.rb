@@ -37,5 +37,6 @@ Jpt::Application.configure do
   config.active_record.raise_in_transactional_callbacks = true
 
   Paperclip::Attachment.default_options[:path] = "#{Rails.root}/public/assets/system/:class/avatars/:id_partition/:style/:filename"
+  Paperclip::Attachment.default_options[:path] = "/public/assets/system/:class/avatars/:id_partition/:style/:filename"
   # Paperclip::Attachment.default_options[:path] = "#{Rails.root}/app/assets/images/system/:class/avatars/:id_partition/:style/:filename.:extension"
 end
