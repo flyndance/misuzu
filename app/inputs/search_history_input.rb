@@ -16,19 +16,19 @@ class SearchHistoryInput < SimpleForm::Inputs::Base
   end
 
   def span_plus_sign
-    template.content_tag(:span, class: 'input-group-addon search-plus') do
+    template.content_tag(:span, class: 'input-group-addon search-plus set-border') do
       template.concat icon_plus_sign
     end
   end
 
   def span_search_history
-    template.content_tag(:span, class: 'input-group-addon search-history') do
+    template.content_tag(:span, class: 'input-group-addon search-history set-border') do
       template.concat icon_search_history
     end
   end
 
   def span_search
-    template.content_tag(:span, class: 'input-group-addon search-field') do
+    template.content_tag(:span, class: 'input-group-addon search-field set-border') do
       template.concat icon_search
     end
   end
