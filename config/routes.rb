@@ -19,6 +19,8 @@ Jpt::Application.routes.draw do
 
   get 'kanri/index'
 
+  get 'helps' => 'helps#index'
+
   resources :kairans do
     collection {post :confirm, :kaitou_create}
     collection {get :shokairan}
