@@ -1,1 +1,1 @@
-json.extract! @setting, :社員番号, :scrolltime
+json.extract! @setting, :社員番号, :scrolltime, :local

@@ -16,7 +16,7 @@ class Setting < ActiveRecord::Base
   end
 
   def self.to_csv
-    attributes = %w{社員番号 scrolltime}
+    attributes = %w{社員番号 scrolltime local}
 
     CSV.generate(headers: true) do |csv|
       csv << attributes
