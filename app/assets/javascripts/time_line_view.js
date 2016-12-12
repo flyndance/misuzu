@@ -49,6 +49,7 @@ $(document).ready(function() {
     // param = 'roru='+roru+'&joutai='+joutai;
     // alert($('#timeline_ロールコード').val());
     $.getJSON('/events/time_line_view?'+param, function(data) {
+
         var calendar = $('#calendar-timeline').fullCalendar(
             {
                 schedulerLicenseKey: 'CC-Attribution-NonCommercial-NoDerivatives',
@@ -68,7 +69,7 @@ $(document).ready(function() {
                 aspectRatio: 1.5,
                 resourceAreaWidth: '30%',
                 slotLabelFormat: ['HH : mm'],
-                scrollTime: data.setting,
+                scrollTime: data.setting.scrolltime,
                 //slotDuration: moment.duration(0.5, 'hours'),
                 //minTime: '00:00:00',
                 //maxTime: '24:00:00',

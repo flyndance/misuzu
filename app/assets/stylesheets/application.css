@@ -119,3 +119,7 @@
   display: block;
   margin: 0.5em auto;
 }*/
+
+.input-group-addon.set-border{
+  border-left-width: 0px;
+}
