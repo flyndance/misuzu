@@ -14,6 +14,7 @@ gem 'passenger', '>= 5.0.4'
 # for avatar, upload picture
 gem 'paperclip'
 gem "bcrypt", "~> 3.1.7"
+gem "paperclip-dropbox", ">= 1.1.7"
 # gem 'active_decorator'
 # gem 'cells'
 

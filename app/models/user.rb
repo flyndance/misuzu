@@ -5,7 +5,9 @@ class User < ActiveRecord::Base
   # validates :email, confirmation: true
   # validates :email_confirmation, presence: true
   # has_attached_file :avatar, styles: { medium: "300x300>", thumb: "50x50>" }, default_url: "images/:style/missing.png"
-  has_attached_file :avatar, styles: {thumb: "50x50#"}, default_url: "/:style/missing.png"
+  has_attached_file :avatar,  default_url: "/:style/missing.png",
+  :storage => :dropbox, :dropbox_credentials => "#{Rails.root}/config/dropbox.yml",styles: {thumb: "50x50#"},:dropbox_visibility => 'private',
+  :dropbox_options => {:path => proc { |style| "#{style}/#{id}_#{avatar.original_filename}" }}
   belongs_to :shainmaster, foreign_key: :担当者コード
   alias_attribute :id, :担当者コード
   alias_attribute :name, :担当者名称
