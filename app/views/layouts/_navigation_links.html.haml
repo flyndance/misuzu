@@ -29,14 +29,14 @@
         - if current_user
           %li.dropdown
             %a.dropdown-toggle{'href'=>"#", 'data-toggle'=>"dropdown", 'role'=>"button", 'aria-haspopup'=>"true", 'aria-expanded'=>"false" }
-              / - image_path_origin = current_user.avatar.url(:thumb)
-              / - if image_path_origin.present?
-              /   %span= image_tag image_path_origin, size: "30x30"
+              - image_path_origin = current_user.avatar.url(:thumb)
+              - if image_path_origin.present?
+                %span= image_tag image_path_origin, size: "30x30"
               / %span Main
               / %span.caret
             %ul.dropdown-menu.center
-              / - if image_path_origin.present?
-              /   %li= image_tag image_path_origin, size: "30x30"
+              - if image_path_origin.present?
+                %li= image_tag image_path_origin, size: "30x30"
               %li= link_to current_user.try(:担当者名称).to_s, edit_user_path(current_user)
               %li.text-gray パスワード更新日：#{current_user.updated_at.to_date}
               %legend.menu
