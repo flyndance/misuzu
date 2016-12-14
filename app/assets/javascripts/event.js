@@ -352,6 +352,39 @@ $(function () {
         // $('#mybasho_search_modal').modal('show');
     });
 
+    $('#myjob_destroy').click(function (){
+        var myjob_id = oMyjobTable.row('tr.selected').data();
+        var shain = $('#event_社員番号').val();
+        $.ajax({
+            url: '/events/ajax',
+            data: {id: 'myjob_削除する',myjob_id: myjob_id[1],shain: shain},
+            type: "POST",
+
+            success: function(data) {
+               if(data.destroy_success != null){
+                    console.log("getAjax destroy_success:"+ data.destroy_success);
+                    // $('#mybasho_table').find('tr.selected').remove();
+                    // $("#mybasho_table").dataTable().fnDraw();
+                    $("#myjob_table").dataTable().fnDeleteRow($('#myjob_table').find('tr.selected').remove());
+                    $("#myjob_table").dataTable().fnDraw();
+                }
+                else{
+
+                    console.log("getAjax destroy_success:"+ data.destroy_success);
+                }
+            },
+            failure: function() {
+                console.log("myjob_削除する keydown Unsuccessful");
+            }
+        });
+        $('#event_JOB').val('');
+        //$('#basho_name').text(d[1]);
+        $('.hint-job-refer').text('');
+
+        // $('#mybasho_search_modal').modal('hide');
+        // $('#mybasho_search_modal').modal('show');
+    });
+
     $('#koutei_sentaku_ok_mybasho').click(function(){
         var mybasho_id = oBashoTable.row('tr.selected').data();
         var shain = $('#event_社員番号').val();
@@ -372,6 +405,31 @@ $(function () {
             },
             failure: function() {
                 console.log("basho_selected keydown Unsuccessful");
+            }
+        });
+    });
+
+    $('#job_sentaku_ok').click(function(){
+
+        var myjob_id = oJobTable.row('tr.selected').data();
+        var shain = $('#event_社員番号').val();
+        $.ajax({
+            url: '/events/ajax',
+            data: {id: 'job_selected',myjob_id: myjob_id[0],shain: shain},
+            type: "POST",
+
+            success: function(data) {
+               if(data.myjob_id != null){
+                    console.log("getAjax myjob_id:"+ data.myjob_id);
+
+                }
+                else{
+
+                    console.log("getAjax myjob_id:"+ data.myjob_id);
+                }
+            },
+            failure: function() {
+                console.log("job_selected keydown Unsuccessful");
             }
         });
     });
@@ -585,6 +643,12 @@ $(function(){
             "sUrl": "../../assets/resource/dataTable_ja.txt"
         }
     });
+    oMyjobTable = $('#myjob_table').DataTable({
+        "pagingType": "simple_numbers"
+        ,"oLanguage":{
+            "sUrl": "../../assets/resource/dataTable_ja.txt"
+        }
+    });
 
     oEventTable = $('#event_table').DataTable({
         "pagingType": "full_numbers",
@@ -789,6 +853,26 @@ $(function(){
         else {
             oJobTable.$('tr.selected').removeClass('selected');
             oJobTable.$('tr.success').removeClass('success');
+            $(this).addClass('selected');
+            $(this).addClass('success');
+        }
+
+    } );
+
+    $('#myjob_table tbody').on( 'click', 'tr', function () {
+
+        var d = oMyjobTable.row(this).data();
+        $('#event_JOB').val(d[1]);
+        //$('#job_name').text(d[1]);
+        $('.hint-job-refer').text(d[2])
+
+        if ( $(this).hasClass('selected') ) {
+            $(this).removeClass('selected');
+            $(this).removeClass('success');
+        }
+        else {
+            oMyjobTable.$('tr.selected').removeClass('selected');
+            oMyjobTable.$('tr.success').removeClass('success');
             $(this).addClass('selected');
             $(this).addClass('success');
         }
