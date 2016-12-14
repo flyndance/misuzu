@@ -138,6 +138,9 @@ jQuery ->
   $('.search-history').click( () ->
     $('#mybasho_search_modal').modal('show')
   )
+  $('.search-history-job').click( () ->
+    $('#myjob_search_modal').modal('show')
+  )
 
   $('#basho-new-ok').click( () ->
     basho_code = $('#mybashomaster_場所コード').val()

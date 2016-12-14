@@ -197,6 +197,10 @@
         export_csv_settings_path(format: :csv) %>
       </td>
     </tr>
+    <tr>
+      <td><%= @index+=1 %></td>
+      <td><%= link_to "Myjobマスタ", export_csv_myjobmasters_path(format: :csv) %></td>
+    </tr>
 
   </tbody>
 </table>
