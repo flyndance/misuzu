@@ -123,6 +123,10 @@ Jpt::Application.routes.draw do
     collection {post :ajax, :import}
     collection {get :export_csv}
   end
+  resources :myjobmasters do
+    collection {post :ajax, :import}
+    collection {get :export_csv}
+  end
 
 	match 'main', to: 'main#index', via: [:get]
 

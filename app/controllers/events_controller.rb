@@ -307,6 +307,36 @@ class EventsController < ApplicationController
          format.json { render json: data}
          # format.js { render 'delete'}
        end
+     when 'myjob_削除する'
+       myjob = Myjobmaster.where(社員番号: params[:shain],job番号: params[:myjob_id]).first
+       if !myjob.nil?
+         myjob.destroy
+       end
+
+       data = {destroy_success: "success"}
+       respond_to do |format|
+         format.json { render json: data}
+         # format.js { render 'delete'}
+       end
+     when 'job_selected'
+        myjob = Myjobmaster.where(社員番号: params[:shain],job番号: params[:myjob_id]).first
+        if myjob.nil?
+          job = Jobmaster.find(params[:myjob_id])
+          myjob = Myjobmaster.new(社員番号: params[:shain],job番号: params[:myjob_id],
+            job名: job.try(:job名),開始日: job.try(:開始日), 終了日: job.try(:終了日),
+            ユーザ番号: job.try(:ユーザ番号),ユーザ名: job.try(:ユーザ名),入力社員番号: job.try(:入力社員番号),
+            分類コード: job.try(:分類コード),分類名: job.try(:分類名),
+            関連Job番号: job.try(:関連Job番号),備考: job.try(:備考))
+          myjob.save
+        else
+          myjob.update(updated_at: Time.now)
+        end
+
+       data = {destroy_success: myjob.id}
+       respond_to do |format|
+         format.json { render json: data}
+         # format.js { render 'delete'}
+       end
        # byebug
    end
   end
@@ -341,8 +371,10 @@ private
     vars = request.query_parameters
     if vars['shain_id'].nil?
       @mybashos = Mybashomaster.where(社員番号: session[:selected_shain]).all.order("updated_at desc")
+      @myjobs = Myjobmaster.where(社員番号: session[:selected_shain]).all.order("updated_at desc")
     else
       @mybashos = Mybashomaster.where(社員番号: vars['shain_id']).all.order("updated_at desc")
+      @myjobs = Myjobmaster.where(社員番号: vars['shain_id']).all.order("updated_at desc")
     end
   end
 

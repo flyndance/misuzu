@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161212022220) do
+ActiveRecord::Schema.define(version: 20161214020129) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -33,6 +33,23 @@ ActiveRecord::Schema.define(version: 20161212022220) do
   end
 
   add_index "JOBマスタ", ["job番号"], name: "index_JOBマスタ_on_job番号", unique: true, using: :btree
+
+  create_table "MYJOBマスタ", id: false, force: :cascade do |t|
+    t.string   "社員番号",       null: false
+    t.string   "job番号",      null: false
+    t.string   "job名"
+    t.date     "開始日"
+    t.date     "終了日"
+    t.string   "ユーザ番号"
+    t.string   "ユーザ名"
+    t.string   "入力社員番号"
+    t.string   "分類コード"
+    t.string   "分類名"
+    t.string   "関連Job番号"
+    t.string   "備考"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "MY場所マスタ", id: false, force: :cascade do |t|
     t.string   "社員番号",       null: false
